@@ -1,7 +1,7 @@
 ````markdown
-# Edu Planner — Project Overview
+# Smart Planner — Project Overview
 
-This repository contains the **Edu Planner frontend files** for a small learning hub web app created for **Hackathon 2025**.  
+This repository contains the **Smart Planner frontend files** for a small learning hub web app created for **Hackathon 2025**.  
 The app is a **static site built using plain HTML, CSS, and JavaScript**, along with a lightweight PHP logging endpoint for optional tracking.
 
 ---
@@ -9,7 +9,7 @@ The app is a **static site built using plain HTML, CSS, and JavaScript**, along 
 ## Files in this repository
 
 - `homepage.html` — Main landing page. Contains the hero section, grade/exam selection form, AI assistant, features, and footer.  
-  The site name displayed in the navbar and footer is **"Edu Planner"**, and the page title is `Edu Planner`.
+  The site name displayed in the navbar and footer is **"Smart Planner"**, and the page title is `Smart Planner`.
 
 - `class9.html` — Resources and materials page for **Class 9 Board Exam** with subject-wise cards for Kannada, English, Hindi, Science, Social Science, and Mathematics.
 
