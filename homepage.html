@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edu Planner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f7fa;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-links .logout-btn {
+            background: rgba(211, 47, 47, 0.9);
+            padding: 8px 15px;
+            border-radius: 8px;
+        }
+
+        .nav-links .logout-btn:hover {
+            background: rgba(211, 47, 47, 1);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(106, 27, 154, 0.95) 0%, rgba(142, 36, 170, 0.95) 100%),
+                        url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920') center/cover;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #6a1b9a;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: #f0f0f0;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Selection Section */
+        .selection-section {
+            background: white;
+            margin: -50px auto 50px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            max-width: 900px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #6a1b9a;
+            margin-bottom: 2rem;
+        }
+
+        .selection-form {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+            cursor: pointer;
+        }
+
+        .form-group select:focus {
+            outline: none;
+            border-color: #8e24aa;
+            box-shadow: 0 0 0 3px rgba(142, 36, 170, 0.1);
+        }
+
+        .submit-btn {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(106, 27, 154, 0.4);
+        }
+
+        /* Error Message */
+        .error-message {
+            color: #d32f2f;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: 600;
+            display: none;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 80px 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            color: #6a1b9a;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .feature-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #8e24aa 0%, #6a1b9a 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .feature-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(142, 36, 170, 0.3);
+        }
+
+        /* AI Assistant Section */
+        .ai-section {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .ai-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .ai-section h2 {
+            font-size: 2.5rem;
+            color: #6a1b9a;
+            margin-bottom: 20px;
+        }
+
+        .ai-section p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .ai-features {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .ai-feature-item {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 200px;
+            max-width: 250px;
+        }
+
+        .ai-feature-item h4 {
+            color: #8e24aa;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 20px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #8e24aa;
+            transform: scale(1.2);
+        }
+
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .selection-section {
+                margin: -30px 20px 30px;
+                padding: 25px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .features-section {
+                padding: 50px 20px;
+            }
+
+            .ai-section h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .selection-form {
+                flex-direction: column;
+            }
+
+            .form-group {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-icon">📚</span>
+                Edu Planner
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#weightage">Weightage</a></li>
+                <li><a href="#studyplan">Study Plan</a></li>
+                <li><a href="#quizzes">Quizzes</a></li>
+                <li><a href="#papers">Past Papers</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="login.php?action=logout" class="logout-btn">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>🚀 Learn Smarter, Not Harder</h1>
+            <p>Your AI-powered personalized learning hub for school and competitive exams. Get curated resources, smart study plans, and exam-specific guidance all in one place.</p>
+            <a href="#selection" class="cta-button">Start Learning Now</a>
+        </div>
+    </section>
+
+    <!-- Grade & Exam Selection Section -->
+    <div class="container">
+        <section class="selection-section" id="selection">
+            <h2 class="section-title">Choose Your Learning Path</h2>
+            <form class="selection-form" id="learningPathForm">
+                <div class="form-group">
+                    <label for="grade">Select Your Grade</label>
+                    <select id="grade" name="grade">
+                        <option value="">-- Select Grade --</option>
+                        <option value="9">Class 9</option>
+                        <option value="10">Class 10</option>
+                        <option value="11">Class 11</option>
+                        <option value="12">Class 12</option>
+                        <option value="competitive">Competitive Exams</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exam">Target Exam</label>
+                    <select id="exam" name="exam">
+                        <option value="">-- Select Exam --</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">Show Resources 🎯</button>
+            </form>
+            <div class="error-message" id="errorMessage"></div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section" id="resources">
+            <h2 class="section-title">Explore Our Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Study Resources</h3>
+                    <p>Access curated YouTube lessons, PDF notes, and comprehensive study materials organized by topic and difficulty.</p>
+                    <a href="#" class="feature-btn">Browse Resources</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Subject Weightage</h3>
+                    <p>Know exactly which topics carry more marks in your exam. Focus your energy where it matters most.</p>
+                    <a href="#" class="feature-btn">View Weightage</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>AI Study Planner</h3>
+                    <p>Get personalized study schedules based on your performance, weak areas, and exam timeline.</p>
+                    <a href="#" class="feature-btn">Create Plan</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>Practice Quizzes</h3>
+                    <p>Test your knowledge with auto-generated quizzes tailored to your weak areas and exam pattern.</p>
+                    <a href="#" class="feature-btn">Start Quiz</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h3>Previous Year Papers</h3>
+                    <p>Access and practice with authentic previous year question papers from all major exams.</p>
+                    <a href="#" class="feature-btn">View Papers</a>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Progress Tracking</h3>
+                    <p>Monitor your improvement with detailed analytics, performance graphs, and achievement badges.</p>
+                    <a href="#" class="feature-btn">Track Progress</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- AI Assistant Section -->
+    <section class="ai-section" id="about">
+        <div class="ai-content">
+            <h2>🤖 Meet Your AI Study Assistant</h2>
+            <p>Our intelligent AI assistant analyzes your performance, identifies weak areas, and creates personalized study plans that adapt to your learning pace. It's like having a personal tutor available 24/7!</p>
+            
+            <div class="ai-features">
+                <div class="ai-feature-item">
+                    <h4>🔍 Smart Recommendations</h4>
+                    <p>Get topic suggestions based on your exam and current progress</p>
+                </div>
+                <div class="ai-feature-item">
+                    <h4>⏰ Time Management</h4>
+                    <p>Optimized study schedules that fit your routine</p>
+                </div>
+                <div class="ai-feature-item">
+                    <h4>🎯 Weak Area Focus</h4>
+                    <p>Extra practice where you need it most</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>Edu Planner</h3>
+            <p>Empowering students to achieve their academic goals through personalized learning.</p>
+            
+            <div class="social-links">
+                <a href="#" title="Facebook">📘</a>
+                <a href="#" title="Twitter">🐦</a>
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="LinkedIn">💼</a>
+                <a href="#" title="YouTube">📺</a>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 Edu Planner. All rights reserved.</p>
+                <p><strong>Designed for Hackathon 2025 by Team SmartLearn</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Get form and input elements
+        const form = document.getElementById('learningPathForm');
+        const gradeSelect = document.getElementById('grade');
+        const examSelect = document.getElementById('exam');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Define exam options for different grades
+        const examOptions = {
+            '9': [
+                { value: 'board', text: 'Board Exams' }
+            ],
+            '10': [
+                { value: 'board', text: 'Board Exams' }
+            ],
+            '11': [
+                { value: 'board', text: 'Board Exams' },
+                { value: 'neet', text: 'NEET' },
+                { value: 'jee', text: 'JEE Main/Advanced' }
+            ],
+            '12': [
+                { value: 'board', text: 'Board Exams' },
+                { value: 'neet', text: 'NEET' },
+                { value: 'jee', text: 'JEE Main/Advanced' }
+            ],
+            'competitive': [
+                { value: 'ntse', text: 'NTSE' },
+                { value: 'ssc', text: 'SSC' },
+                { value: 'bank', text: 'Bank Exams' },
+                { value: 'upsc', text: 'UPSC' },
+                { value: 'cat', text: 'CAT' }
+            ]
+        };
+
+        // Function to populate exam dropdown based on selected grade
+        function updateExamOptions(selectedGrade) {
+            // Clear existing options
+            examSelect.innerHTML = '<option value="">-- Select Exam --</option>';
+            
+            // If grade is selected, populate exam options
+            if (selectedGrade && examOptions[selectedGrade]) {
+                examOptions[selectedGrade].forEach(function(exam) {
+                    const option = document.createElement('option');
+                    option.value = exam.value;
+                    option.textContent = exam.text;
+                    examSelect.appendChild(option);
+                });
+            }
+        }
+
+        // Listen to grade selection change
+        gradeSelect.addEventListener('change', function() {
+            const selectedGrade = this.value;
+            updateExamOptions(selectedGrade);
+            
+            // Clear error message when user starts selecting
+            if (errorMessage.style.display === 'block') {
+                errorMessage.style.display = 'none';
+            }
+        });
+
+        // Handle form submission
+        form.addEventListener('submit', function(e) {
+            // Prevent default form submission
+            e.preventDefault();
+            
+            // Get selected values
+            const grade = gradeSelect.value;
+            const exam = examSelect.value;
+            
+            // Clear previous error message
+            errorMessage.style.display = 'none';
+            errorMessage.textContent = '';
+            
+            // Validate both fields are selected
+            if (!grade || !exam) {
+                // Show error message
+                if (!grade && !exam) {
+                    errorMessage.textContent = '⚠ Please select both Grade and Exam';
+                } else if (!grade) {
+                    errorMessage.textContent = '⚠ Please select your Grade';
+                } else {
+                    errorMessage.textContent = '⚠ Please select your Target Exam';
+                }
+                errorMessage.style.display = 'block';
+                
+                // Add visual feedback to empty fields
+                if (!grade) {
+                    gradeSelect.style.borderColor = '#d32f2f';
+                    setTimeout(() => { gradeSelect.style.borderColor = '#e0e0e0'; }, 2000);
+                }
+                if (!exam) {
+                    examSelect.style.borderColor = '#d32f2f';
+                    setTimeout(() => { examSelect.style.borderColor = '#e0e0e0'; }, 2000);
+                }
+                
+                return false;
+            }
+            
+            // Define routing logic based on your requirements
+            let filename = '';
+            
+            // Class 9 with Board Exam -> class9.html
+            if (grade === '9' && exam === 'board') {
+                filename = 'class9.html';
+            }
+            // Class 10 with Board Exam -> class10.html
+            else if (grade === '10' && exam === 'board') {
+                filename = 'class10.html';
+            }
+            // Class 11 with Board Exam -> class11.html
+            else if (grade === '11' && exam === 'board') {
+                filename = 'class11.html';
+            }
+            // Class 11 with NEET -> class11neet.html
+            else if (grade === '11' && exam === 'neet') {
+                filename = 'class11neet.html';
+            }
+            // Class 11 with JEE -> class11jee.html
+            else if (grade === '11' && exam === 'jee') {
+                filename = 'class11jee.html';
+            }
+            // Class 12 with Board Exam -> class12.html
+            else if (grade === '12' && exam === 'board') {
+                filename = 'class12.html';
+            }
+            // Class 12 with NEET -> class12neet.html
+            else if (grade === '12' && exam === 'neet') {
+                filename = 'class12neet.html';
+            }
+            // Class 12 with JEE -> class12jee.html
+            else if (grade === '12' && exam === 'jee') {
+                filename = 'class12jee.html';
+            }
+            // For competitive exams, use the original pattern
+            else if (grade === 'competitive') {
+                filename = 'competitive_' + exam + '.html';
+            }
+            // Fallback for any other combination
+            else {
+                filename = grade + '_' + exam + '.html';
+            }
+            
+            // Redirect to the appropriate page
+            window.location.href = filename;
+        });
+        
+        // Clear error message when exam is selected
+        examSelect.addEventListener('change', function() {
+            if (errorMessage.style.display === 'block') {
+                errorMessage.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

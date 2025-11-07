@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 12 - Board Exam Resources</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container-custom {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Section */
+        .header-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .header-section h1 {
+            color: #6a1b9a;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+
+        .header-section p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(106, 27, 154, 0.4);
+            color: white;
+        }
+
+        /* Subject Cards Grid */
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        /* Subject Card */
+        .subject-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            border-color: #6a1b9a;
+        }
+
+        .subject-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .subject-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+        }
+
+        .subject-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin: 0;
+        }
+
+        /* Resource Buttons */
+        .resource-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .resource-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+        }
+
+        .resource-btn i {
+            font-size: 1.2rem;
+        }
+
+        .btn-notes {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .btn-notes:hover {
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+            transform: translateX(5px);
+        }
+
+        .btn-youtube {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .btn-youtube:hover {
+            background: linear-gradient(135deg, #fee140 0%, #fa709a 100%);
+            transform: translateX(5px);
+        }
+
+        .btn-papers {
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+        }
+
+        .btn-papers:hover {
+            background: linear-gradient(135deg, #330867 0%, #30cfd0 100%);
+            transform: translateX(5px);
+        }
+
+        /* Footer */
+        .footer-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-section p {
+            margin: 0;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-section h1 {
+                font-size: 2rem;
+            }
+
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .subject-title {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subject-card {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .subject-card:nth-child(1) { animation-delay: 0.1s; }
+        .subject-card:nth-child(2) { animation-delay: 0.2s; }
+        .subject-card:nth-child(3) { animation-delay: 0.3s; }
+        .subject-card:nth-child(4) { animation-delay: 0.4s; }
+        .subject-card:nth-child(5) { animation-delay: 0.5s; }
+        .subject-card:nth-child(6) { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <div class="container-custom">
+        <!-- Header Section -->
+        <div class="header-section">
+            <h1><i class="fas fa-graduation-cap"></i> Class 12 – Board Exam Resources</h1>
+            <p>Access comprehensive study materials for all subjects</p>
+            <a href="home.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+
+        <!-- Subjects Grid -->
+        <div class="subjects-grid">
+            <!-- Kannada Card -->
+            <div class="subject-card">
+                <div class="subject-header">
+                    <div class="subject-icon">📘</div>
+                    <h2 class="subject-title">Kannada</h2>
+                </div>
+                <div class="resource-buttons">
+                    <a href="#notes-kannada" class="resource-btn btn-notes">
+                        <span><i class="fas fa-file-pdf"></i> Notes / PDF</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#youtube-kannada" class="resource-btn btn-youtube">
+                        <span><i class="fab fa-youtube"></i> YouTube Lessons</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#papers-kannada" class="resource-btn btn-papers">
+                        <span><i class="fas fa-file-alt"></i> Previous Year Papers</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- English Card -->
+            <div class="subject-card">
+                <div class="subject-header">
+                    <div class="subject-icon">📗</div>
+                    <h2 class="subject-title">English</h2>
+                </div>
+                <div class="resource-buttons">
+                    <a href="#notes-english" class="resource-btn btn-notes">
+                        <span><i class="fas fa-file-pdf"></i> Notes / PDF</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#youtube-english" class="resource-btn btn-youtube">
+                        <span><i class="fab fa-youtube"></i> YouTube Lessons</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#papers-english" class="resource-btn btn-papers">
+                        <span><i class="fas fa-file-alt"></i> Previous Year Papers</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Physics Card -->
+            <div class="subject-card">
+                <div class="subject-header">
+                    <div class="subject-icon">🔬</div>
+                    <h2 class="subject-title">Physics</h2>
+                </div>
+                <div class="resource-buttons">
+                    <a href="#notes-physics" class="resource-btn btn-notes">
+                        <span><i class="fas fa-file-pdf"></i> Notes / PDF</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#youtube-physics" class="resource-btn btn-youtube">
+                        <span><i class="fab fa-youtube"></i> YouTube Lessons</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#papers-physics" class="resource-btn btn-papers">
+                        <span><i class="fas fa-file-alt"></i> Previous Year Papers</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Chemistry Card -->
+            <div class="subject-card">
+                <div class="subject-header">
+                    <div class="subject-icon">🧪</div>
+                    <h2 class="subject-title">Chemistry</h2>
+                </div>
+                <div class="resource-buttons">
+                    <a href="#notes-chemistry" class="resource-btn btn-notes">
+                        <span><i class="fas fa-file-pdf"></i> Notes / PDF</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#youtube-chemistry" class="resource-btn btn-youtube">
+                        <span><i class="fab fa-youtube"></i> YouTube Lessons</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#papers-chemistry" class="resource-btn btn-papers">
+                        <span><i class="fas fa-file-alt"></i> Previous Year Papers</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mathematics Card -->
+            <div class="subject-card">
+                <div class="subject-header">
+                    <div class="subject-icon">📐</div>
+                    <h2 class="subject-title">Mathematics</h2>
+                </div>
+                <div class="resource-buttons">
+                    <a href="#notes-mathematics" class="resource-btn btn-notes">
+                        <span><i class="fas fa-file-pdf"></i> Notes / PDF</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#youtube-mathematics" class="resource-btn btn-youtube">
+                        <span><i class="fab fa-youtube"></i> YouTube Lessons</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#papers-mathematics" class="resource-btn btn-papers">
+                        <span><i class="fas fa-file-alt"></i> Previous Year Papers</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Biology Card -->
+            <div class="subject-card">
+                <div class="subject-header">
+                    <div class="subject-icon">🧬</div>
+                    <h2 class="subject-title">Biology</h2>
+                </div>
+                <div class="resource-buttons">
+                    <a href="#notes-biology" class="resource-btn btn-notes">
+                        <span><i class="fas fa-file-pdf"></i> Notes / PDF</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#youtube-biology" class="resource-btn btn-youtube">
+                        <span><i class="fab fa-youtube"></i> YouTube Lessons</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#papers-biology" class="resource-btn btn-papers">
+                        <span><i class="fas fa-file-alt"></i> Previous Year Papers</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="footer-section">
+            <p>© 2025 E-Learning Platform | Empowering Students to Excel</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

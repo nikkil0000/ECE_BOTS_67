@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEET Previous Year Papers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header with Glassmorphism */
+        .header {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            padding: 50px 40px;
+            margin-bottom: 50px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background: white;
+            color: #6a1b9a;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 25px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Section Title with Modern Style */
+        .section-title {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title h2 {
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Papers Grid - Card Style */
+        .papers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .paper-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            border: 3px solid transparent;
+        }
+
+        .paper-card:hover {
+            transform: translateY(-15px) rotate(-2deg);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-color: #6a1b9a;
+        }
+
+        .year-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #6a1b9a, #8e24aa);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 20px rgba(106, 27, 154, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .paper-info {
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 2;
+            font-size: 1.05rem;
+        }
+
+        .paper-info strong {
+            color: #6a1b9a;
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background: linear-gradient(135deg, #6a1b9a, #8e24aa);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(106, 27, 154, 0.3);
+            font-size: 1rem;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(106, 27, 154, 0.5);
+            background: linear-gradient(135deg, #8e24aa, #6a1b9a);
+        }
+
+        /* Video Section - Modern Grid */
+        .video-section {
+            margin-bottom: 50px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            border: 3px solid transparent;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-color: #6a1b9a;
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #6a1b9a, #8e24aa);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-thumbnail::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #6a1b9a;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .video-card:hover .play-button {
+            transform: scale(1.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .video-content {
+            padding: 30px;
+        }
+
+        .video-title {
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .video-description {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .watch-btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #6a1b9a, #8e24aa);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(106, 27, 154, 0.3);
+        }
+
+        .watch-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(106, 27, 154, 0.5);
+        }
+
+        /* Tips Section - Modern Card Design */
+        .tips-section {
+            background: white;
+            border-radius: 25px;
+            padding: 50px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            margin-bottom: 40px;
+            border: 3px solid #6a1b9a;
+        }
+
+        .tips-section h2 {
+            color: #6a1b9a;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 800;
+        }
+
+        .tips-section ul {
+            list-style: none;
+            padding: 0;
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .tips-section li {
+            padding: 20px 20px 20px 60px;
+            background: linear-gradient(135deg, rgba(106, 27, 154, 0.05), rgba(142, 36, 170, 0.05));
+            border-radius: 15px;
+            color: #555;
+            position: relative;
+            font-size: 1rem;
+            line-height: 1.7;
+            border: 2px solid rgba(106, 27, 154, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .tips-section li:hover {
+            transform: translateX(10px);
+            border-color: #6a1b9a;
+            background: linear-gradient(135deg, rgba(106, 27, 154, 0.1), rgba(142, 36, 170, 0.1));
+        }
+
+        .tips-section li:before {
+            content: '✓';
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #6a1b9a, #8e24aa);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(106, 27, 154, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .header {
+                padding: 35px 25px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .header p {
+                font-size: 1.1rem;
+            }
+
+            .papers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-thumbnail {
+                height: 220px;
+            }
+
+            .tips-section {
+                padding: 35px 25px;
+            }
+
+            .tips-section ul {
+                grid-template-columns: 1fr;
+            }
+
+            .tips-section li {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .paper-card:nth-child(odd) {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .paper-card:nth-child(even) {
+            animation: float 3s ease-in-out infinite 1.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📄 Previous Year Papers</h1>
+            <p>Practice with authentic NEET question papers</p>
+            <a href="homepage.html" class="back-btn">← Back to Home</a>
+        </div>
+
+        <div class="section-title">
+            <h2>📚 PDF Papers</h2>
+        </div>
+
+        <div class="papers-grid">
+            <div class="paper-card">
+                <div class="year-badge">NEET 2024</div>
+                <div class="paper-info">
+                    <strong>Full Paper</strong>
+                    200 Questions | 720 Marks<br>
+                    Duration: 3 Hours
+                </div>
+                <a href="#" class="download-btn">📥 Download PDF</a>
+            </div>
+
+            <div class="paper-card">
+                <div class="year-badge">NEET 2023</div>
+                <div class="paper-info">
+                    <strong>Full Paper</strong>
+                    200 Questions | 720 Marks<br>
+                    Duration: 3 Hours
+                </div>
+                <a href="#" class="download-btn">📥 Download PDF</a>
+            </div>
+
+            <div class="paper-card">
+                <div class="year-badge">NEET 2022</div>
+                <div class="paper-info">
+                    <strong>Full Paper</strong>
+                    200 Questions | 720 Marks<br>
+                    Duration: 3 Hours
+                </div>
+                <a href="#" class="download-btn">📥 Download PDF</a>
+            </div>
+
+            <div class="paper-card">
+                <div class="year-badge">NEET 2021</div>
+                <div class="paper-info">
+                    <strong>Full Paper</strong>
+                    200 Questions | 720 Marks<br>
+                    Duration: 3 Hours
+                </div>
+                <a href="https://share.google/A75fJkSMiX5OLYzyX" class="download-btn">📥 Download PDF</a>
+            </div>
+        </div>
+
+        <!-- Physics Video Section -->
+        <div class="video-section">
+            <div class="section-title">
+                <h2>🎥 Physics Video Resources</h2>
+            </div>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">Motion and Laws - NEET Quick Revision</div>
+                        <div class="video-description">Master Newton's laws and kinematics with solved examples from previous year papers</div>
+                        <a href="https://youtu.be/PLQ0_vZF25o?si=YcDsR7l4Qax7NC40" class="watch-btn">▶ Watch Video</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">Electricity & Magnetism Concepts</div>
+                        <div class="video-description">Complete coverage of electrostatics, current electricity, and magnetic effects</div>
+                        <a href="https://www.youtube.com/live/I4kB3onwjpw?si=1nE9NVC1-n9KFzgL" class="watch-btn">▶ Watch Video</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">Optics & Modern Physics</div>
+                        <div class="video-description">Ray optics, wave optics, and quantum mechanics simplified for NEET</div>
+                        <a href="https://www.youtube.com/live/72T8RfBU0ME?si=kdIc5ZqTlwIla2cJ" class="watch-btn">▶ Watch Video</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">Thermodynamics & SHM</div>
+                        <div class="video-description">Laws of thermodynamics and simple harmonic motion with numerical practice</div>
+                        <a href="https://www.youtube.com/live/JAvi2K_DbbI?si=u0A7BVJsY5wx-LWg" class="watch-btn">▶ Watch Video</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chemistry Video Section -->
+        <div class="video-section">
+            <div class="section-title">
+                <h2>⚗ Chemistry Video Resources</h2>
+            </div>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">Organic Chemistry Reactions</div>
+                        <div class="video-description">Important reaction mechanisms and named reactions for NEET organic chemistry</div>
+                        <a href="https://www.youtube.com/live/kwG6zR-Gvso?si=xdkhvGRZsFMwCm1u" class="watch-btn">▶ Watch Video</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">Chemical Bonding & Structure</div>
+                        <div class="video-description">VSEPR theory, hybridization, and molecular orbital theory explained clearly</div>
+                        <a href="https://youtu.be/F3ZSvrLBeik?si=nWMTr4CrIw1YiHeO" class="watch-btn">▶ Watch Video</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">Equilibrium & Kinetics</div>
+                        <div class="video-description">Chemical and ionic equilibrium with rate laws and reaction mechanisms</div>
+                        <a href="https://youtu.be/W75q96Fcsd8?si=U2b5zb0lE1_6If-c" class="watch-btn">▶ Watch Video</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">Periodic Table & Elements</div>
+                        <div class="video-description">Periodic trends, s-block, p-block, d-block, and f-block elements overview</div>
+                        <a href="https://youtube.com/" class="watch-btn">▶ Watch Video</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Biology Video Section -->
+        <div class="video-section">
+            <div class="section-title">
+                <h2>🌿 Biology Video Resources</h2>
+            </div>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">Human Physiology Complete</div>
+                        <div class="video-description">Detailed coverage of all organ systems with diagrams and clinical correlations</div>
+                        <a href="https://www.youtube.com/live/8qMEmWjt7zg?si=v6L2YeU5sVMSsgKJ" class="watch-btn">▶ Watch Video</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">Genetics & Evolution</div>
+                        <div class="video-description">Mendelian genetics, molecular basis of inheritance, and evolutionary concepts</div>
+                        <a href="https://youtu.be/E8T_8RN1jvo?si=jh6pqVMZtQKzwGsF" class="watch-btn">▶ Watch Video</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">Plant Physiology & Anatomy</div>
+                        <div class="video-description">Photosynthesis, respiration, plant growth, and tissue systems explained</div>
+                        <a href="https://youtube.com/" class="watch-btn">▶ Watch Video</a>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="video-content">
+                        <div class="video-title">Ecology & Environment</div>
+                        <div class="video-description">Ecosystem dynamics, biodiversity, conservation, and environmental issues</div>
+                        <a href="https://youtube.com/" class="watch-btn">▶ Watch Video</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tips-section">
+            <h2>💡 Exam Preparation Tips</h2>
+            <ul>
+                <li>Solve previous year papers within the stipulated time limit</li>
+                <li>Analyze your mistakes and weak areas after each test</li>
+                <li>Focus on NCERT textbooks as the primary source</li>
+                <li>Attempt papers in exam-like conditions for better preparation</li>
+                <li>Review answer keys and understand the reasoning behind solutions</li>
+                <li>Take regular breaks and maintain a consistent study schedule</li>
+                <li>Practice mock tests to improve speed and accuracy</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 11 - Board Exam Resources | SmartLearn</title>
+    <style>
+        /* ========== GLOBAL RESET & BASE STYLES ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        /* ========== CONTAINER ========== */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ========== HEADER SECTION ========== */
+        .header {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #6a1b9a 0%, #8e24aa 50%, #6a1b9a 100%);
+            background-size: 200% 100%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 0%; }
+            50% { background-position: 100% 0%; }
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(106, 27, 154, 0.3);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 6px 20px rgba(106, 27, 154, 0.5);
+        }
+
+        .header-title {
+            font-size: 2.8rem;
+            color: #333;
+            margin-bottom: 12px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .header-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .grade-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(106, 27, 154, 0.3);
+        }
+
+        /* ========== SUBJECTS GRID ========== */
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        /* ========== SUBJECT CARD ========== */
+        .subject-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: cardFadeIn 0.6s ease forwards;
+        }
+
+        @keyframes cardFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Staggered animation delays */
+        .subject-card:nth-child(1) { animation-delay: 0.1s; }
+        .subject-card:nth-child(2) { animation-delay: 0.2s; }
+        .subject-card:nth-child(3) { animation-delay: 0.3s; }
+        .subject-card:nth-child(4) { animation-delay: 0.4s; }
+        .subject-card:nth-child(5) { animation-delay: 0.5s; }
+        .subject-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--subject-color-start) 0%, var(--subject-color-end) 100%);
+        }
+
+        .subject-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Color themes for each subject */
+        .subject-card.kannada { --subject-color-start: #f093fb; --subject-color-end: #f5576c; }
+        .subject-card.english { --subject-color-start: #4facfe; --subject-color-end: #00f2fe; }
+        .subject-card.physics { --subject-color-start: #43e97b; --subject-color-end: #38f9d7; }
+        .subject-card.chemistry { --subject-color-start: #fa709a; --subject-color-end: #fee140; }
+        .subject-card.maths { --subject-color-start: #ff9a56; --subject-color-end: #ff6a88; }
+        .subject-card.biology { --subject-color-start: #a8edea; --subject-color-end: #fed6e3; }
+
+        /* ========== SUBJECT HEADER ========== */
+        .subject-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .subject-icon {
+            font-size: 3.5rem;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--subject-color-start) 0%, var(--subject-color-end) 100%);
+            border-radius: 18px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .subject-card:hover .subject-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .subject-name {
+            font-size: 2rem;
+            color: #333;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        /* ========== RESOURCES BUTTONS ========== */
+        .resources-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .resource-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 22px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--subject-color-start) 0%, var(--subject-color-end) 100%);
+            transition: left 0.4s ease;
+            z-index: 0;
+        }
+
+        .resource-btn:hover::before {
+            left: 0;
+        }
+
+        .resource-btn:hover {
+            color: white;
+            border-color: var(--subject-color-start);
+            transform: translateX(8px);
+        }
+
+        .resource-btn-content {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .resource-icon {
+            font-size: 1.6rem;
+            transition: transform 0.3s ease;
+        }
+
+        .resource-btn:hover .resource-icon {
+            transform: scale(1.2);
+        }
+
+        .arrow-icon {
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .resource-btn:hover .arrow-icon {
+            transform: translateX(6px);
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px 20px;
+            color: white;
+        }
+
+        .footer-tip {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .footer-copyright {
+            font-size: 0.95rem;
+            opacity: 0.85;
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header-title {
+                font-size: 2rem;
+                margin-top: 20px;
+            }
+
+            .back-btn {
+                position: static;
+                transform: none;
+                margin-bottom: 20px;
+                display: inline-flex;
+            }
+
+            .back-btn:hover {
+                transform: scale(1.05);
+            }
+
+            .subjects-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .subject-name {
+                font-size: 1.6rem;
+            }
+
+            .subject-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-title {
+                font-size: 1.6rem;
+            }
+
+            .header-subtitle {
+                font-size: 1rem;
+            }
+
+            .subject-card {
+                padding: 25px;
+            }
+
+            .subject-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 2.5rem;
+            }
+
+            .subject-name {
+                font-size: 1.4rem;
+            }
+
+            .resource-btn {
+                padding: 14px 18px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ========== LOADING ANIMATION ========== */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .grade-badge {
+            animation: pulse 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ========== HEADER SECTION ========== -->
+        <div class="header">
+            <!-- Back to Home Button -->
+            <a href="home.html" class="back-btn">
+                ← Back to Home
+            </a>
+            
+            <h1 class="header-title">📚 Class 11 – Board Exam Resources</h1>
+            <p class="header-subtitle">Complete study materials for all subjects</p>
+            <span class="grade-badge">Grade: Class 11 | Exam: Board Exams</span>
+        </div>
+
+        <!-- ========== SUBJECTS GRID ========== -->
+        <div class="subjects-grid">
+            
+            <!-- KANNADA CARD -->
+            <div class="subject-card kannada">
+                <div class="subject-header">
+                    <div class="subject-icon">📘</div>
+                    <h2 class="subject-name">Kannada</h2>
+                </div>
+                <div class="resources-list">
+                    <!-- Notes/PDF Button -->
+                    <a href="#notes-kannada" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📄</span>
+                            <span>Notes & PDFs</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <!-- YouTube Lessons Button -->
+                    <a href="#youtube-kannada" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">🎥</span>
+                            <span>YouTube Lessons</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <!-- Previous Year Papers Button -->
+                    <a href="#papers-kannada" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📝</span>
+                            <span>Previous Year Papers</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- ENGLISH CARD -->
+            <div class="subject-card english">
+                <div class="subject-header">
+                    <div class="subject-icon">🔤</div>
+                    <h2 class="subject-name">English</h2>
+                </div>
+                <div class="resources-list">
+                    <a href="#notes-english" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📄</span>
+                            <span>Notes & PDFs</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="#youtube-english" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">🎥</span>
+                            <span>YouTube Lessons</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="#papers-english" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📝</span>
+                            <span>Previous Year Papers</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- PHYSICS CARD -->
+            <div class="subject-card physics">
+                <div class="subject-header">
+                    <div class="subject-icon">🔬</div>
+                    <h2 class="subject-name">Physics</h2>
+                </div>
+                <div class="resources-list">
+                    <a href="#notes-physics" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📄</span>
+                            <span>Notes & PDFs</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="#youtube-physics" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">🎥</span>
+                            <span>YouTube Lessons</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="#papers-physics" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📝</span>
+                            <span>Previous Year Papers</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- CHEMISTRY CARD -->
+            <div class="subject-card chemistry">
+                <div class="subject-header">
+                    <div class="subject-icon">🧪</div>
+                    <h2 class="subject-name">Chemistry</h2>
+                </div>
+                <div class="resources-list">
+                    <a href="#notes-chemistry" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📄</span>
+                            <span>Notes & PDFs</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="#youtube-chemistry" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">🎥</span>
+                            <span>YouTube Lessons</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="#papers-chemistry" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📝</span>
+                            <span>Previous Year Papers</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- MATHEMATICS CARD -->
+            <div class="subject-card maths">
+                <div class="subject-header">
+                    <div class="subject-icon">🔢</div>
+                    <h2 class="subject-name">Mathematics</h2>
+                </div>
+                <div class="resources-list">
+                    <a href="#notes-maths" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📄</span>
+                            <span>Notes & PDFs</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="#youtube-maths" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">🎥</span>
+                            <span>YouTube Lessons</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="#papers-maths" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📝</span>
+                            <span>Previous Year Papers</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- BIOLOGY CARD -->
+            <div class="subject-card biology">
+                <div class="subject-header">
+                    <div class="subject-icon">🧬</div>
+                    <h2 class="subject-name">Biology</h2>
+                </div>
+                <div class="resources-list">
+                    <a href="#notes-biology" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📄</span>
+                            <span>Notes & PDFs</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="#youtube-biology" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">🎥</span>
+                            <span>YouTube Lessons</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="#papers-biology" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📝</span>
+                            <span>Previous Year Papers</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ========== FOOTER ========== -->
+        <div class="footer">
+            <p class="footer-tip">💡 Tip: Download materials for offline access and better learning experience</p>
+            <p class="footer-copyright">&copy; 2025 Edu Planner - Your Learning Companion</p>
+        </div>
+    </div>
+
+    <!-- ========== OPTIONAL JAVASCRIPT ========== -->
+    <script>
+        // Add click feedback and console logging for resource buttons
+        document.querySelectorAll('.resource-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                console.log('Resource clicked:', this.href);
+                
+                // Optional: Add a subtle click animation
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 100);
+            });
+        });
+
+        // Log page view
+        console.log('Class 11 Board Resources page loaded successfully');
+
+        // Smooth scroll to top when back button is clicked
+        document.querySelector('.back-btn').addEventListener('click', function(e) {
+            console.log('Navigating back to home page');
+        });
+
+        // Add accessibility: keyboard navigation support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                window.location.href = 'home.html';
+            }
+        });
+    </script>
+</body>
+</html>

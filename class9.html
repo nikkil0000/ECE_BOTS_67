@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 9 - Board Exam Resources | Edu Planner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Section */
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 5px 15px rgba(106, 27, 154, 0.4);
+        }
+
+        .header-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .header-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .grade-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        /* Subjects Grid */
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        /* Subject Card */
+        .subject-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #6a1b9a 0%, #8e24aa 100%);
+        }
+
+        .subject-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        .subject-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .subject-icon {
+            font-size: 3rem;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(106, 27, 154, 0.3);
+        }
+
+        .subject-name {
+            font-size: 1.8rem;
+            color: #333;
+            font-weight: 700;
+        }
+
+        .resources-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .resource-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .resource-btn:hover {
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            color: white;
+            border-color: #6a1b9a;
+            transform: translateX(5px);
+        }
+
+        .resource-btn-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .resource-icon {
+            font-size: 1.5rem;
+        }
+
+        .arrow-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .resource-btn:hover .arrow-icon {
+            transform: translateX(5px);
+        }
+
+        /* Subject Color Themes */
+        .subject-card.kannada .subject-icon {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .subject-card.kannada::before {
+            background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .subject-card.english .subject-icon {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .subject-card.english::before {
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .subject-card.hindi .subject-icon {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .subject-card.hindi::before {
+            background: linear-gradient(90deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .subject-card.social .subject-icon {
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+        }
+
+        .subject-card.social::before {
+            background: linear-gradient(90deg, #30cfd0 0%, #330867 100%);
+        }
+
+        .subject-card.science .subject-icon {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .subject-card.science::before {
+            background: linear-gradient(90deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .subject-card.maths .subject-icon {
+            background: linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%);
+        }
+
+        .subject-card.maths::before {
+            background: linear-gradient(90deg, #ff9a56 0%, #ff6a88 100%);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: white;
+        }
+
+        .footer p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 1.8rem;
+                margin-top: 40px;
+            }
+
+            .back-btn {
+                position: static;
+                transform: none;
+                margin-bottom: 20px;
+                display: inline-flex;
+            }
+
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .subject-name {
+                font-size: 1.5rem;
+            }
+
+            .header {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .header-title {
+                font-size: 1.5rem;
+            }
+
+            .subject-card {
+                padding: 20px;
+            }
+
+            .subject-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 2.5rem;
+            }
+
+            .resource-btn {
+                padding: 12px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Loading Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subject-card {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .subject-card:nth-child(1) { animation-delay: 0.1s; }
+        .subject-card:nth-child(2) { animation-delay: 0.2s; }
+        .subject-card:nth-child(3) { animation-delay: 0.3s; }
+        .subject-card:nth-child(4) { animation-delay: 0.4s; }
+        .subject-card:nth-child(5) { animation-delay: 0.5s; }
+        .subject-card:nth-child(6) { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <a href="index.html" class="back-btn">
+                ← Back to Home
+            </a>
+            <h1 class="header-title">📚 Class 9 - Board Exam Resources</h1>
+            <p class="header-subtitle">Complete study materials for all subjects</p>
+            <span class="grade-badge">Grade: Class 9 | Exam: Board Exams</span>
+        </div>
+
+        <!-- Subjects Grid -->
+        <div class="subjects-grid">
+            <!-- Kannada -->
+            <div class="subject-card kannada">
+                <div class="subject-header">
+                    <div class="subject-icon">📖</div>
+                    <h2 class="subject-name">Kannada</h2>
+                </div>
+                <div class="resources-list">
+                    <a href="notes/class9/kannada_notes.pdf" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📄</span>
+                            <span>Notes & PDFs</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="videos/class9/kannada_videos.html" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">🎥</span>
+                            <span>YouTube Lessons</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="papers/class9/kannada_papers.pdf" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📝</span>
+                            <span>Previous Year Papers</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- English -->
+            <div class="subject-card english">
+                <div class="subject-header">
+                    <div class="subject-icon">🔤</div>
+                    <h2 class="subject-name">English</h2>
+                </div>
+                <div class="resources-list">
+                    <a href="notes/class9/english_notes.pdf" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📄</span>
+                            <span>Notes & PDFs</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="videos/class9/english_videos.html" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">🎥</span>
+                            <span>YouTube Lessons</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="papers/class9/english_papers.pdf" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📝</span>
+                            <span>Previous Year Papers</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hindi -->
+            <div class="subject-card hindi">
+                <div class="subject-header">
+                    <div class="subject-icon">🗣</div>
+                    <h2 class="subject-name">Hindi</h2>
+                </div>
+                <div class="resources-list">
+                    <a href="notes/class9/hindi_notes.pdf" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📄</span>
+                            <span>Notes & PDFs</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="videos/class9/hindi_videos.html" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">🎥</span>
+                            <span>YouTube Lessons</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="papers/class9/hindi_papers.pdf" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📝</span>
+                            <span>Previous Year Papers</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Social Science -->
+            <div class="subject-card social">
+                <div class="subject-header">
+                    <div class="subject-icon">🌍</div>
+                    <h2 class="subject-name">Social Science</h2>
+                </div>
+                <div class="resources-list">
+                    <a href="notes/class9/social_notes.pdf" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📄</span>
+                            <span>Notes & PDFs</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="videos/class9/social_videos.html" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">🎥</span>
+                            <span>YouTube Lessons</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="papers/class9/social_papers.pdf" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📝</span>
+                            <span>Previous Year Papers</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Science -->
+            <div class="subject-card science">
+                <div class="subject-header">
+                    <div class="subject-icon">🔬</div>
+                    <h2 class="subject-name">Science</h2>
+                </div>
+                <div class="resources-list">
+                    <a href="notes/class9/science_notes.pdf" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📄</span>
+                            <span>Notes & PDFs</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="videos/class9/science_videos.html" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">🎥</span>
+                            <span>YouTube Lessons</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="papers/class9/science_papers.pdf" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📝</span>
+                            <span>Previous Year Papers</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mathematics -->
+            <div class="subject-card maths">
+                <div class="subject-header">
+                    <div class="subject-icon">🔢</div>
+                    <h2 class="subject-name">Mathematics</h2>
+                </div>
+                <div class="resources-list">
+                    <a href="notes/class9/maths_notes.pdf" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📄</span>
+                            <span>Notes & PDFs</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="videos/class9/maths_videos.html" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">🎥</span>
+                            <span>YouTube Lessons</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                    <a href="papers/class9/maths_papers.pdf" class="resource-btn">
+                        <div class="resource-btn-content">
+                            <span class="resource-icon">📝</span>
+                            <span>Previous Year Papers</span>
+                        </div>
+                        <span class="arrow-icon">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>💡 Tip: Download materials for offline access and better learning experience</p>
+            <p>&copy; 2025 Edu Planner - Your Learning Companion</p>
+        </div>
+    </div>
+
+    <script>
+        // Add click feedback for resource buttons
+        document.querySelectorAll('.resource-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // Optional: Add loading animation or confirmation
+                console.log('Resource clicked:', this.href);
+                
+                // You can add analytics tracking here
+                // trackResourceClick(this.href);
+            });
+        });
+
+        // Smooth scroll to top when back button is clicked
+        document.querySelector('.back-btn').addEventListener('click', function(e) {
+            // Optional: Add confirmation before leaving
+            // if (!confirm('Are you sure you want to go back?')) {
+            //     e.preventDefault();
+            // }
+        });
+
+        // Track page view (optional analytics)
+        console.log('Class 9 Board Resources page loaded');
+    </script>
+</body>
+</html>
