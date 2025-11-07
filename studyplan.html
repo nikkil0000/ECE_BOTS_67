@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Study Planner - SmartLearn Planner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 8px;
+            <li><a href="homepage.html"></a></li>
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            color: #6a1b9a;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Study Plan Generator */
+        .generator-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #6a1b9a;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .plan-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #8e24aa;
+            box-shadow: 0 0 0 3px rgba(142, 36, 170, 0.1);
+        }
+
+        .generate-btn {
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(106, 27, 154, 0.4);
+        }
+
+        /* Study Plan Display */
+        .plan-display {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .plan-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .plan-info {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #6a1b9a;
+        }
+
+        .plan-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .save-btn {
+            background: #4caf50;
+            color: white;
+        }
+
+        .reset-btn {
+            background: #f44336;
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        /* Study Schedule */
+        .schedule-container {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .day-schedule {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #8e24aa;
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .day-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .day-date {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .study-sessions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .study-session {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .session-time {
+            font-size: 0.8rem;
+            color: #8e24aa;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .session-subject {
+            font-size: 0.9rem;
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+
+        .session-topic {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Progress Tracking */
+        .progress-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .progress-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .progress-card {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .progress-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(142, 36, 170, 0.2);
+        }
+
+        .progress-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .progress-label {
+            font-size: 1rem;
+            color: #6a1b9a;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(142, 36, 170, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-percentage {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .plan-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .plan-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .plan-info {
+                justify-content: center;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span>📚</span>
+                SmartLearn Planner
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="weightage.html">Weightage</a></li>
+                <li><a href="studyplan.html">Study Plan</a></li>
+                <li><a href="quizzes.html">Quizzes</a></li>
+                <li><a href="papers.html">Past Papers</a></li>
+                <li><a href="ai-assistant.html">AI Assistant</a></li>
+                <li><a href="login.html" class="back-btn">← Back</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">📅 AI Study Planner</h1>
+            <p class="page-subtitle">Get personalized study schedules based on your exam and timeline</p>
+        </div>
+
+        <!-- Study Plan Generator -->
+        <div class="generator-section">
+            <h2 class="section-title">
+                <i class="fas fa-calendar-plus"></i>
+                Generate Your Study Plan
+            </h2>
+            <form class="plan-form" id="studyPlanForm">
+                <div class="form-group">
+                    <label for="targetExam">Target Exam</label>
+                    <select id="targetExam" required>
+                        <option value="">Select Exam</option>
+                        <option value="board-10">Class 10 Board</option>
+                        <option value="board-12">Class 12 Board</option>
+                        <option value="neet">NEET</option>
+                        <option value="jee">JEE Main/Advanced</option>
+                        <option value="ntse">NTSE</option>
+                        <option value="ssc">SSC</option>
+                        <option value="bank">Bank Exams</option>
+                        <option value="upsc">UPSC</option>
+                        <option value="cat">CAT</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="examDate">Exam Date</label>
+                    <input type="date" id="examDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="studyHours">Daily Study Hours</label>
+                    <select id="studyHours" required>
+                        <option value="">Select Hours</option>
+                        <option value="2">2 hours</option>
+                        <option value="3">3 hours</option>
+                        <option value="4">4 hours</option>
+                        <option value="5">5 hours</option>
+                        <option value="6">6 hours</option>
+                        <option value="8">8 hours</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="weakSubjects">Weak Subjects (Optional)</label>
+                    <select id="weakSubjects" multiple>
+                        <option value="mathematics">Mathematics</option>
+                        <option value="science">Science</option>
+                        <option value="english">English</option>
+                        <option value="social">Social Science</option>
+                        <option value="reasoning">Reasoning</option>
+                        <option value="gk">General Knowledge</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="preferredTime">Preferred Study Time</label>
+                    <select id="preferredTime" required>
+                        <option value="">Select Time</option>
+                        <option value="morning">Morning (6-10 AM)</option>
+                        <option value="afternoon">Afternoon (12-4 PM)</option>
+                        <option value="evening">Evening (4-8 PM)</option>
+                        <option value="night">Night (8 PM-12 AM)</option>
+                        <option value="flexible">Flexible</option>
+                    </select>
+                </div>
+                <button type="submit" class="generate-btn">Generate Study Plan 🎯</button>
+            </form>
+        </div>
+
+        <!-- Study Plan Display -->
+        <div class="plan-display" id="planDisplay">
+            <div class="plan-header">
+                <div class="plan-info">
+                    <div class="info-item">
+                        <div class="info-label">Total Days</div>
+                        <div class="info-value" id="totalDays">0</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Study Hours</div>
+                        <div class="info-value" id="totalHours">0</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Subjects</div>
+                        <div class="info-value" id="totalSubjects">0</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Weekly Load</div>
+                        <div class="info-value" id="weeklyLoad">0h</div>
+                    </div>
+                </div>
+                <div class="plan-actions">
+                    <button class="action-btn save-btn" onclick="savePlan()">💾 Save Plan</button>
+                    <button class="action-btn reset-btn" onclick="resetPlan()">🔄 Reset</button>
+                </div>
+            </div>
+
+            <div class="schedule-container" id="scheduleContainer">
+                <!-- Study schedule will be populated here -->
+            </div>
+        </div>
+
+        <!-- Progress Tracking -->
+        <div class="progress-section">
+            <h2 class="section-title">
+                <i class="fas fa-chart-line"></i>
+                Your Study Progress
+            </h2>
+            <div class="progress-grid">
+                <div class="progress-card">
+                    <span class="progress-icon">📚</span>
+                    <div class="progress-label">Topics Completed</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 35%;"></div>
+                    </div>
+                    <div class="progress-percentage">35% (23/65)</div>
+                </div>
+                <div class="progress-card">
+                    <span class="progress-icon">⏰</span>
+                    <div class="progress-label">Study Hours</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%;"></div>
+                    </div>
+                    <div class="progress-percentage">60% (72/120)</div>
+                </div>
+                <div class="progress-card">
+                    <span class="progress-icon">📝</span>
+                    <div class="progress-label">Practice Tests</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 25%;"></div>
+                    </div>
+                    <div class="progress-percentage">25% (5/20)</div>
+                </div>
+                <div class="progress-card">
+                    <span class="progress-icon">🎯</span>
+                    <div class="progress-label">Weekly Target</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%;"></div>
+                    </div>
+                    <div class="progress-percentage">80% (16/20 hrs)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentStudyPlan = null;
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set minimum date to today
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById('examDate').min = tomorrow.toISOString().split('T')[0];
+            
+            // Load saved plan if exists
+            loadSavedPlan();
+        });
+
+        // Handle form submission
+        document.getElementById('studyPlanForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            generateStudyPlan();
+        });
+
+        // Generate study plan
+        function generateStudyPlan() {
+            const formData = new FormData(document.getElementById('studyPlanForm'));
+            const planData = {
+                exam: formData.get('targetExam'),
+                examDate: formData.get('examDate'),
+                studyHours: parseInt(formData.get('studyHours')),
+                weakSubjects: Array.from(document.getElementById('weakSubjects').selectedOptions).map(option => option.value),
+                preferredTime: formData.get('preferredTime')
+            };
+
+            // Calculate plan details
+            const today = new Date();
+            const examDate = new Date(planData.examDate);
+            const totalDays = Math.ceil((examDate - today) / (1000 * 60 * 60 * 24));
+            const totalHours = totalDays * planData.studyHours;
+            const weeklyLoad = planData.studyHours * 7;
+
+            // Generate schedule
+            const schedule = generateSchedule(planData, totalDays);
+
+            // Store current plan
+            currentStudyPlan = {
+                ...planData,
+                totalDays,
+                totalHours,
+                weeklyLoad,
+                schedule,
+                generatedAt: new Date().toISOString()
+            };
+
+            // Display plan
+            displayStudyPlan(currentStudyPlan);
+        }
+
+        // Generate schedule
+        function generateSchedule(planData, totalDays) {
+            const schedule = [];
+            const subjects = getSubjectsForExam(planData.exam);
+            const today = new Date();
+
+            // Distribute subjects across days
+            for (let i = 0; i < Math.min(totalDays, 30); i++) { // Show max 30 days
+                const currentDate = new Date(today);
+                currentDate.setDate(today.getDate() + i);
+
+                const daySchedule = {
+                    date: currentDate.toISOString().split('T')[0],
+                    dayName: getDayName(currentDate),
+                    sessions: []
+                };
+
+                // Create sessions for the day
+                const sessionHours = planData.studyHours;
+                const sessionsPerDay = Math.max(1, Math.min(4, Math.ceil(sessionHours / 2)));
+                const hoursPerSession = sessionHours / sessionsPerDay;
+
+                for (let j = 0; j < sessionsPerDay; j++) {
+                    const subject = selectSubjectForDay(subjects, planData.weakSubjects, i, j);
+                    const topic = getTopicForSubject(subject, i);
+                    
+                    daySchedule.sessions.push({
+                        time: getSessionTime(planData.preferredTime, j, hoursPerSession),
+                        subject: subject,
+                        topic: topic,
+                        duration: hoursPerSession
+                    });
+                }
+
+                schedule.push(daySchedule);
+            }
+
+            return schedule;
+        }
+
+        // Get subjects for exam
+        function getSubjectsForExam(exam) {
+            const examSubjects = {
+                'board-10': ['Mathematics', 'Science', 'English', 'Social Science', 'Hindi'],
+                'board-12': ['Mathematics', 'Physics', 'Chemistry', 'English', 'Optional'],
+                'neet': ['Physics', 'Chemistry', 'Biology', 'Mock Tests'],
+                'jee': ['Mathematics', 'Physics', 'Chemistry', 'Mock Tests'],
+                'ntse': ['Mathematics', 'Science', 'Social Science', 'Mental Ability', 'English'],
+                'ssc': ['Quantitative Aptitude', 'Reasoning', 'English', 'General Awareness'],
+                'bank': ['Quantitative Aptitude', 'Reasoning', 'English', 'Banking Awareness'],
+                'upsc': ['General Studies', 'Optional Subject', 'Essay', 'CSAT'],
+                'cat': ['Quantitative Aptitude', 'Verbal Ability', 'Logical Reasoning']
+            };
+
+            return examSubjects[exam] || ['Subject 1', 'Subject 2', 'Subject 3'];
+        }
+
+        // Select subject for day
+        function selectSubjectForDay(subjects, weakSubjects, dayIndex, sessionIndex) {
+            // Prioritize weak subjects
+            if (weakSubjects.length > 0 && dayIndex % 3 === 0) {
+                return weakSubjects[dayIndex % weakSubjects.length];
+            }
+
+            // Rotate through subjects
+            return subjects[(dayIndex * sessionIndex) % subjects.length];
+        }
+
+        // Get topic for subject
+        function getTopicForSubject(subject, dayIndex) {
+            const topics = {
+                'Mathematics': ['Algebra Basics', 'Geometry', 'Trigonometry', 'Calculus', 'Statistics'],
+                'Science': ['Physics Concepts', 'Chemistry Reactions', 'Biology Systems', 'Practical Experiments'],
+                'Physics': ['Mechanics', 'Thermodynamics', 'Electromagnetism', 'Modern Physics'],
+                'Chemistry': ['Organic Chemistry', 'Inorganic Chemistry', 'Physical Chemistry'],
+                'Biology': ['Cell Biology', 'Genetics', 'Ecology', 'Human Physiology']
+            };
+
+            const subjectTopics = topics[subject] || ['Topic 1', 'Topic 2', 'Topic 3'];
+            return subjectTopics[dayIndex % subjectTopics.length];
+        }
+
+        // Get session time
+        function getSessionTime(preferredTime, sessionIndex, duration) {
+            const timeSlots = {
+                'morning': ['6:00 AM', '8:00 AM', '10:00 AM'],
+                'afternoon': ['12:00 PM', '2:00 PM', '4:00 PM'],
+                'evening': ['4:00 PM', '6:00 PM', '8:00 PM'],
+                'night': ['8:00 PM', '10:00 PM', '12:00 AM'],
+                'flexible': ['9:00 AM', '2:00 PM', '7:00 PM']
+            };
+
+            const slots = timeSlots[preferredTime] || timeSlots['flexible'];
+            return slots[sessionIndex % slots.length];
+        }
+
+        // Get day name
+        function getDayName(date) {
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            return days[date.getDay()];
+        }
+
+        // Display study plan
+        function displayStudyPlan(plan) {
+            // Update header info
+            document.getElementById('totalDays').textContent = plan.totalDays;
+            document.getElementById('totalHours').textContent = plan.totalHours;
+            document.getElementById('totalSubjects').textContent = getSubjectsForExam(plan.exam).length;
+            document.getElementById('weeklyLoad').textContent = plan.weeklyLoad + 'h';
+
+            // Generate schedule HTML
+            const scheduleContainer = document.getElementById('scheduleContainer');
+            scheduleContainer.innerHTML = '';
+
+            plan.schedule.forEach(day => {
+                const dayDiv = document.createElement('div');
+                dayDiv.className = 'day-schedule';
+                
+                let sessionsHtml = '';
+                day.sessions.forEach(session => {
+                    sessionsHtml += `
+                        <div class="study-session">
+                            <div class="session-time">${session.time} (${session.duration}h)</div>
+                            <div class="session-subject">${session.subject}</div>
+                            <div class="session-topic">${session.topic}</div>
+                        </div>
+                    `;
+                });
+
+                dayDiv.innerHTML = `
+                    <div class="day-header">
+                        <div class="day-title">${day.dayName}</div>
+                        <div class="day-date">${formatDate(day.date)}</div>
+                    </div>
+                    <div class="study-sessions">
+                        ${sessionsHtml}
+                    </div>
+                `;
+
+                scheduleContainer.appendChild(dayDiv);
+            });
+
+            // Show plan display
+            document.getElementById('planDisplay').style.display = 'block';
+
+            // Scroll to plan
+            document.getElementById('planDisplay').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                month: 'short', 
+                day: 'numeric',
+                year: 'numeric'
+            });
+        }
+
+        // Save plan
+        function savePlan() {
+            if (!currentStudyPlan) return;
+
+            localStorage.setItem('smartlearn_study_plan', JSON.stringify(currentStudyPlan));
+            
+            // Show success message
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                z-index: 10000;
+                font-weight: 600;
+                animation: slideIn 0.3s ease;
+            `;
+            notification.textContent = '✅ Study plan saved successfully!';
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Reset plan
+        function resetPlan() {
+            document.getElementById('studyPlanForm').reset();
+            document.getElementById('planDisplay').style.display = 'none';
+            currentStudyPlan = null;
+            localStorage.removeItem('smartlearn_study_plan');
+        }
+
+        // Load saved plan
+        function loadSavedPlan() {
+            const savedPlan = localStorage.getItem('smartlearn_study_plan');
+            if (savedPlan) {
+                currentStudyPlan = JSON.parse(savedPlan);
+                displayStudyPlan(currentStudyPlan);
+            }
+        }
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        console.log('AI Study Planner loaded successfully!');
+    </script>
+</body>
+</html>

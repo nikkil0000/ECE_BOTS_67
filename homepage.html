@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edu Planner</title>
+    <title>Smart Planner - Your Personalized Learning Hub</title>
     <style>
         * {
             margin: 0;
@@ -392,6 +392,340 @@
             color: rgba(255,255,255,0.7);
         }
 
+        /* Floating AI Button */
+        .ai-floating-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(106, 27, 154, 0.4);
+            transition: all 0.3s ease;
+            z-index: 999;
+            border: none;
+            animation: pulse 2s infinite;
+        }
+
+        .ai-floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(106, 27, 154, 0.6);
+        }
+
+        .ai-floating-btn span {
+            font-size: 2rem;
+        }
+
+        .ai-notification-badge {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 20px;
+            height: 20px;
+            background: #ff5252;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+            color: white;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 8px 25px rgba(106, 27, 154, 0.4);
+            }
+            50% {
+                box-shadow: 0 8px 25px rgba(106, 27, 154, 0.7), 0 0 0 10px rgba(106, 27, 154, 0.1);
+            }
+            100% {
+                box-shadow: 0 8px 25px rgba(106, 27, 154, 0.4);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* AI Chat Modal */
+        .ai-modal {
+            display: none;
+            position: fixed;
+            bottom: 120px;
+            right: 30px;
+            width: 400px;
+            max-height: 600px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            z-index: 998;
+            flex-direction: column;
+            overflow: hidden;
+            animation: slideUp 0.3s ease;
+        }
+
+        .ai-modal.active {
+            display: flex;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Chat Header */
+        .chat-header {
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .ai-avatar {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .ai-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 3px;
+        }
+
+        .ai-info p {
+            opacity: 0.9;
+            font-size: 0.8rem;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            line-height: 1;
+            transition: all 0.3s ease;
+        }
+
+        .close-chat:hover {
+            transform: scale(1.2);
+        }
+
+        /* Chat Container */
+        .chat-container {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            max-height: 400px;
+        }
+
+        .chat-message {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .message-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .user-avatar {
+            background: #6a1b9a;
+            color: white;
+        }
+
+        .bot-avatar {
+            background: #8e24aa;
+            color: white;
+        }
+
+        .message-content {
+            max-width: 75%;
+            padding: 10px 14px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .user-message {
+            justify-content: flex-end;
+        }
+
+        .user-message .message-content {
+            background: #6a1b9a;
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .bot-message .message-content {
+            background: white;
+            color: #333;
+            border: 1px solid #e0e0e0;
+            border-bottom-left-radius: 5px;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .quick-actions h4 {
+            color: #6a1b9a;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 6px 12px;
+            background: #f3e5f5;
+            color: #6a1b9a;
+            border: 1px solid #8e24aa;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: #6a1b9a;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* Chat Input */
+        .chat-input-container {
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .input-wrapper {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .chat-input:focus {
+            border-color: #8e24aa;
+            box-shadow: 0 0 0 3px rgba(142, 36, 170, 0.1);
+        }
+
+        .send-btn {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(106, 27, 154, 0.4);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .typing-dot {
+            width: 7px;
+            height: 7px;
+            background: #8e24aa;
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typing {
+            0%, 80%, 100% {
+                transform: scale(0);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
@@ -423,6 +757,23 @@
             .ai-section h2 {
                 font-size: 2rem;
             }
+
+            .ai-modal {
+                width: calc(100% - 40px);
+                right: 20px;
+                bottom: 110px;
+            }
+
+            .ai-floating-btn {
+                width: 60px;
+                height: 60px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .ai-floating-btn span {
+                font-size: 1.7rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -453,13 +804,13 @@
         <div class="nav-container">
             <a href="#" class="logo">
                 <span class="logo-icon">📚</span>
-                Edu Planner
+                SmartLearn Planner
             </a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#resources">Resources</a></li>
                 <li><a href="#weightage">Weightage</a></li>
-                <li><a href="#studyplan">Study Plan</a></li>
+                <li><a href="studyplan.html">Study Plan</a></li>
                 <li><a href="#quizzes">Quizzes</a></li>
                 <li><a href="#papers">Past Papers</a></li>
                 <li><a href="#about">About</a></li>
@@ -526,7 +877,7 @@
                     <div class="feature-icon">🧠</div>
                     <h3>AI Study Planner</h3>
                     <p>Get personalized study schedules based on your performance, weak areas, and exam timeline.</p>
-                    <a href="#" class="feature-btn">Create Plan</a>
+                    <a href="studyplan.html" class="feature-btn">Create Plan</a>
                 </div>
 
                 <div class="feature-card">
@@ -579,7 +930,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <h3>Edu Planner</h3>
+            <h3>SmartLearn Planner</h3>
             <p>Empowering students to achieve their academic goals through personalized learning.</p>
             
             <div class="social-links">
@@ -591,13 +942,81 @@
             </div>
 
             <div class="copyright">
-                <p>&copy; 2025 Edu Planner. All rights reserved.</p>
+                <p>&copy; 2025 SmartLearn Planner. All rights reserved.</p>
                 <p><strong>Designed for Hackathon 2025 by Team SmartLearn</strong></p>
             </div>
         </div>
     </footer>
 
+    <!-- Floating AI Assistant Button -->
+    <button class="ai-floating-btn" id="aiFloatingBtn" onclick="toggleAIChat()">
+        <span>🤖</span>
+        <div class="ai-notification-badge">!</div>
+    </button>
+
+    <!-- AI Chat Modal -->
+    <div class="ai-modal" id="aiModal">
+        <!-- Chat Header -->
+        <div class="chat-header">
+            <div class="chat-header-left">
+                <div class="ai-avatar">🤖</div>
+                <div class="ai-info">
+                    <h3>AI Assistant</h3>
+                    <p>Online • Ready to help</p>
+                </div>
+            </div>
+            <button class="close-chat" onclick="toggleAIChat()">×</button>
+        </div>
+
+        <!-- Chat Container -->
+        <div class="chat-container" id="chatContainer">
+            <div class="chat-message bot-message">
+                <div class="message-avatar bot-avatar">🤖</div>
+                <div class="message-content">
+                    Hello! I'm your AI Study Assistant. How can I help you today?
+                </div>
+            </div>
+
+            <!-- Typing Indicator -->
+            <div class="chat-message bot-message typing-indicator" id="typingIndicator">
+                <div class="message-avatar bot-avatar">🤖</div>
+                <div class="message-content">
+                    <div class="typing-dots">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <h4>Quick Questions:</h4>
+            <div class="action-buttons">
+                <button class="action-btn" onclick="sendQuickMessage('Study resources')">📚 Resources</button>
+                <button class="action-btn" onclick="sendQuickMessage('Exam tips')">📝 Exam Tips</button>
+                <button class="action-btn" onclick="sendQuickMessage('Study plan')">📅 Study Plan</button>
+                <button class="action-btn" onclick="sendQuickMessage('Weightage info')">📊 Weightage</button>
+            </div>
+        </div>
+
+        <!-- Chat Input -->
+        <div class="chat-input-container">
+            <div class="input-wrapper">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Type your question..." autocomplete="off">
+                <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+                    ➤
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        let chatHistory = [];
+        let isTyping = false;
+        let isChatOpen = false;
+
         // Get form and input elements
         const form = document.getElementById('learningPathForm');
         const gradeSelect = document.getElementById('grade');
@@ -633,10 +1052,8 @@
 
         // Function to populate exam dropdown based on selected grade
         function updateExamOptions(selectedGrade) {
-            // Clear existing options
             examSelect.innerHTML = '<option value="">-- Select Exam --</option>';
             
-            // If grade is selected, populate exam options
             if (selectedGrade && examOptions[selectedGrade]) {
                 examOptions[selectedGrade].forEach(function(exam) {
                     const option = document.createElement('option');
@@ -652,7 +1069,6 @@
             const selectedGrade = this.value;
             updateExamOptions(selectedGrade);
             
-            // Clear error message when user starts selecting
             if (errorMessage.style.display === 'block') {
                 errorMessage.style.display = 'none';
             }
@@ -660,20 +1076,15 @@
 
         // Handle form submission
         form.addEventListener('submit', function(e) {
-            // Prevent default form submission
             e.preventDefault();
             
-            // Get selected values
             const grade = gradeSelect.value;
             const exam = examSelect.value;
             
-            // Clear previous error message
             errorMessage.style.display = 'none';
             errorMessage.textContent = '';
             
-            // Validate both fields are selected
             if (!grade || !exam) {
-                // Show error message
                 if (!grade && !exam) {
                     errorMessage.textContent = '⚠ Please select both Grade and Exam';
                 } else if (!grade) {
@@ -683,7 +1094,6 @@
                 }
                 errorMessage.style.display = 'block';
                 
-                // Add visual feedback to empty fields
                 if (!grade) {
                     gradeSelect.style.borderColor = '#d32f2f';
                     setTimeout(() => { gradeSelect.style.borderColor = '#e0e0e0'; }, 2000);
@@ -696,60 +1106,200 @@
                 return false;
             }
             
-            // Define routing logic based on your requirements
             let filename = '';
             
-            // Class 9 with Board Exam -> class9.html
             if (grade === '9' && exam === 'board') {
                 filename = 'class9.html';
             }
-            // Class 10 with Board Exam -> class10.html
             else if (grade === '10' && exam === 'board') {
                 filename = 'class10.html';
             }
-            // Class 11 with Board Exam -> class11.html
             else if (grade === '11' && exam === 'board') {
                 filename = 'class11.html';
             }
-            // Class 11 with NEET -> class11neet.html
             else if (grade === '11' && exam === 'neet') {
                 filename = 'class11neet.html';
             }
-            // Class 11 with JEE -> class11jee.html
             else if (grade === '11' && exam === 'jee') {
                 filename = 'class11jee.html';
             }
-            // Class 12 with Board Exam -> class12.html
             else if (grade === '12' && exam === 'board') {
                 filename = 'class12.html';
             }
-            // Class 12 with NEET -> class12neet.html
             else if (grade === '12' && exam === 'neet') {
                 filename = 'class12neet.html';
             }
-            // Class 12 with JEE -> class12jee.html
             else if (grade === '12' && exam === 'jee') {
                 filename = 'class12jee.html';
             }
-            // For competitive exams, use the original pattern
             else if (grade === 'competitive') {
                 filename = 'competitive_' + exam + '.html';
             }
-            // Fallback for any other combination
             else {
                 filename = grade + '_' + exam + '.html';
             }
             
-            // Redirect to the appropriate page
             window.location.href = filename;
         });
         
-        // Clear error message when exam is selected
         examSelect.addEventListener('change', function() {
             if (errorMessage.style.display === 'block') {
                 errorMessage.style.display = 'none';
             }
         });
+
+        // AI Chat Functions
+        function toggleAIChat() {
+            const modal = document.getElementById('aiModal');
+            const badge = document.querySelector('.ai-notification-badge');
+            
+            isChatOpen = !isChatOpen;
+            
+            if (isChatOpen) {
+                modal.classList.add('active');
+                if (badge) badge.style.display = 'none';
+                document.getElementById('chatInput').focus();
+            } else {
+                modal.classList.remove('active');
+            }
+        }
+
+        // Initialize chat input
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatInput = document.getElementById('chatInput');
+            const sendBtn = document.getElementById('sendBtn');
+
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            chatInput.addEventListener('input', function() {
+                sendBtn.disabled = !this.value.trim();
+            });
+        });
+
+        function sendMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const message = chatInput.value.trim();
+            
+            if (!message || isTyping) return;
+
+            addUserMessage(message);
+            chatInput.value = '';
+            document.getElementById('sendBtn').disabled = true;
+
+            showTypingIndicator();
+
+            setTimeout(() => {
+                hideTypingIndicator();
+                const response = generateAIResponse(message);
+                addBotMessage(response);
+            }, 1500 + Math.random() * 1000);
+        }
+
+        function sendQuickMessage(message) {
+            if (isTyping) return;
+            
+            addUserMessage(message);
+            showTypingIndicator();
+
+            setTimeout(() => {
+                hideTypingIndicator();
+                const response = generateAIResponse(message);
+                addBotMessage(response);
+            }, 1500);
+        }
+
+        function addUserMessage(message) {
+            const chatContainer = document.getElementById('chatContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message user-message';
+            messageDiv.innerHTML = `
+                <div class="message-content">${escapeHtml(message)}</div>
+                <div class="message-avatar user-avatar">👤</div>
+            `;
+            
+            chatContainer.insertBefore(messageDiv, document.getElementById('typingIndicator'));
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            
+            chatHistory.push({ type: 'user', message: message, timestamp: new Date() });
+        }
+
+        function addBotMessage(message) {
+            const chatContainer = document.getElementById('chatContainer');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message bot-message';
+            messageDiv.innerHTML = `
+                <div class="message-avatar bot-avatar">🤖</div>
+                <div class="message-content">${message}</div>
+            `;
+            
+            chatContainer.insertBefore(messageDiv, document.getElementById('typingIndicator'));
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            
+            chatHistory.push({ type: 'bot', message: message, timestamp: new Date() });
+        }
+
+        function showTypingIndicator() {
+            isTyping = true;
+            document.getElementById('typingIndicator').style.display = 'flex';
+            
+            const chatContainer = document.getElementById('chatContainer');
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            isTyping = false;
+            document.getElementById('typingIndicator').style.display = 'none';
+        }
+
+        function generateAIResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            if (lowerMessage.includes('resource') || lowerMessage.includes('study material') || lowerMessage.includes('notes')) {
+                return `📚 We have comprehensive study resources:<br><br>• Video lessons from expert teachers<br>• PDF notes and study materials<br>• Practice problems with solutions<br>• Previous year question papers<br><br>Select your grade and exam to get started!`;
+            }
+            
+            if (lowerMessage.includes('exam') || lowerMessage.includes('prepare') || lowerMessage.includes('tips')) {
+                return `📝 Here are effective exam preparation strategies:<br><br>• Create a realistic study schedule<br>• Focus on high-weightage topics<br>• Practice with previous year papers<br>• Take regular mock tests<br>• Review and revise regularly`;
+            }
+            
+            if (lowerMessage.includes('study plan') || lowerMessage.includes('schedule') || lowerMessage.includes('plan')) {
+                return `📅 Create an effective study plan:<br><br>• Assess your preparation level<br>• Identify strong and weak areas<br>• Allocate time by subject weightage<br>• Include revision sessions<br>• Set achievable goals<br><br>Visit our <a href="studyplan.html" style="color: #6a1b9a; font-weight: 600;">Study Plan</a> section for personalized plans!`;
+            }
+            
+            if (lowerMessage.includes('weightage') || lowerMessage.includes('marks') || lowerMessage.includes('important')) {
+                return `📊 Subject weightage varies by exam:<br><br>• Board Exams: Equal weightage<br>• NEET: 50% Biology, 25% Physics, 25% Chemistry<br>• JEE: Equal weightage for all subjects<br><br>Check our Weightage section for details!`;
+            }
+            
+            if (lowerMessage.includes('quiz') || lowerMessage.includes('practice') || lowerMessage.includes('test')) {
+                return `🎯 Quiz recommendations:<br><br>• Start with topic-wise quizzes<br>• Progress to full-length tests<br>• Focus on weak areas<br>• Time yourself during practice<br>• Analyze mistakes thoroughly<br><br>Visit our Quizzes section!`;
+            }
+            
+            if (lowerMessage.includes('time') || lowerMessage.includes('manage')) {
+                return `⏰ Time management tips:<br><br>• Use Pomodoro technique (25 min study, 5 min break)<br>• Study difficult subjects when fresh<br>• Set specific session goals<br>• Avoid multitasking<br>• Take regular breaks`;
+            }
+            
+            if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
+                return `🤖 Hello! I'm your AI Study Assistant. Ask me about:<br><br>• 📚 Study resources<br>• 📝 Exam preparation<br>• 📊 Subject weightage<br>• 📅 Study planning<br>• 🎯 Practice tests<br><br>How can I help you?`;
+            }
+            
+            return `🤖 I'm here to help! You can ask me about:<br><br>• 📚 Study resources<br>• 📝 Exam tips<br>• 📊 Subject weightage<br>• 📅 Study planning<br>• 🎯 Practice tests<br>• ⏰ Time management<br><br>What would you like to know?`;
+        }
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
     </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NTSE Preparation Hub</title>
+    <title>NTSE Preparation Hub - Complete Study Platform</title>
     <style>
         /* ===========================
            Global Styles & Reset
@@ -14,14 +14,10 @@
             box-sizing: border-box;
         }
 
-       body {
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             padding: 20px;
             overflow-x: hidden;
         }
@@ -31,13 +27,13 @@
         =========================== */
         .header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             animation: fadeInDown 0.8s ease-out;
         }
 
         .header h1 {
             color: white;
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
             text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             margin-bottom: 10px;
@@ -45,33 +41,91 @@
 
         .header p {
             color: rgba(255, 255, 255, 0.9);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         /* ===========================
-           Cards Container
+           Navigation Bar
         =========================== */
-        .cards-container {
+        .nav-bar {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
             display: flex;
-            gap: 40px;
-            max-width: 1200px;
-            width: 100%;
-            justify-content: center;
-            align-items: stretch;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(106, 27, 154, 0.4);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
+        .nav-links a {
+            padding: 8px 16px;
+            background: rgba(106, 27, 154, 0.1);
+            color: #6a1b9a;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: #6a1b9a;
+            color: white;
+        }
+
         /* ===========================
-           Individual Card Styles
+           Main Content Grid
         =========================== */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ===========================
+           NTSE SAT & MAT Cards
+        =========================== */
+        .ntse-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
         .card {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
-            padding: 50px 40px;
-            flex: 1;
-            min-width: 300px;
-            max-width: 450px;
+            padding: 40px 30px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -81,7 +135,6 @@
             animation: fadeInUp 0.8s ease-out;
         }
 
-        /* Staggered animation delay */
         .card:nth-child(1) {
             animation-delay: 0.2s;
         }
@@ -90,13 +143,11 @@
             animation-delay: 0.4s;
         }
 
-        /* Hover effect for cards */
         .card:hover {
             transform: translateY(-15px) scale(1.03);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
-        /* Animated background gradient on hover */
         .card::before {
             content: '';
             position: absolute;
@@ -114,15 +165,13 @@
             opacity: 1;
         }
 
-        /* Card content positioning */
         .card-content {
             position: relative;
             z-index: 1;
         }
 
-        /* Icon styles */
         .card-icon {
-            font-size: 5rem;
+            font-size: 4rem;
             margin-bottom: 20px;
             display: inline-block;
             transition: transform 0.4s ease;
@@ -132,9 +181,8 @@
             transform: scale(1.2) rotate(5deg);
         }
 
-        /* Title styles */
         .card-title {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: #333;
             margin-bottom: 15px;
@@ -145,15 +193,13 @@
             color: #667eea;
         }
 
-        /* Subtitle/Description styles */
         .card-description {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #666;
             line-height: 1.6;
             margin-bottom: 25px;
         }
 
-        /* Call-to-action button */
         .card-cta {
             display: inline-block;
             padding: 12px 30px;
@@ -172,9 +218,513 @@
             transform: translateY(-2px);
         }
 
-        /* Active/Click effect */
-        .card:active {
-            transform: translateY(-10px) scale(1.01);
+        /* ===========================
+           Competitive Exam Categories
+        =========================== */
+        .categories-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .categories-title {
+            font-size: 2rem;
+            color: #6a1b9a;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .category-card {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            padding: 25px 20px;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            border-color: #8e24aa;
+            box-shadow: 0 10px 25px rgba(142, 36, 170, 0.2);
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .category-title {
+            font-size: 1.3rem;
+            color: #6a1b9a;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .category-description {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        /* ===========================
+           Subject Weightage Section
+        =========================== */
+        .weightage-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            margin-top: 30px;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+
+        .weightage-title {
+            font-size: 1.8rem;
+            color: #6a1b9a;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .weightage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .weightage-item {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .weightage-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(142, 36, 170, 0.2);
+        }
+
+        .weightage-subject {
+            font-size: 1.1rem;
+            color: #6a1b9a;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .weightage-percentage {
+            font-size: 2rem;
+            color: #8e24aa;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .weightage-description {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* ===========================
+           Aptitude Topics Container
+        =========================== */
+        .topics-container {
+            max-width: 1400px;
+            margin: 30px auto 0;
+        }
+
+        /* Topics Grid */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .topic-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .topic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 20px;
+        }
+
+        .topic-card:hover::before {
+            opacity: 1;
+        }
+
+        .topic-card.completed::after {
+            content: '✓';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            background: #4caf50;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(76, 175, 80, 0.4);
+        }
+
+        .topic-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            transition: transform 0.4s ease;
+        }
+
+        .topic-card:hover .topic-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .topic-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .topic-card:hover .topic-title {
+            color: #667eea;
+        }
+
+        .topic-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .topic-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #6a1b9a;
+            display: block;
+        }
+
+        .difficulty-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .difficulty-beginner {
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .difficulty-intermediate {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .difficulty-advanced {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .topic-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .start-btn, .quiz-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .quiz-btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
+        }
+
+        .topic-card:hover .start-btn {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .topic-card:hover .quiz-btn {
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+            box-shadow: 0 6px 20px rgba(245, 87, 108, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Progress Section */
+        .progress-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .progress-title {
+            font-size: 1.8rem;
+            color: #6a1b9a;
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .progress-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .progress-card {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .progress-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(142, 36, 170, 0.2);
+        }
+
+        .progress-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .progress-label {
+            font-size: 1rem;
+            color: #6a1b9a;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(142, 36, 170, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-percentage {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Quiz Modal */
+        .quiz-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .quiz-modal.active {
+            display: flex;
+        }
+
+        .quiz-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .quiz-header h2 {
+            color: #6a1b9a;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .quiz-question {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .quiz-question h3 {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .quiz-option.selected {
+            border-color: #667eea;
+            background: #e8f0fe;
+        }
+
+        .quiz-option.correct {
+            border-color: #4caf50;
+            background: #e8f5e9;
+        }
+
+        .quiz-option.wrong {
+            border-color: #f44336;
+            background: #ffebee;
+        }
+
+        .quiz-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .quiz-btn-action {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-quiz {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-quiz:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .close-quiz {
+            background: #f44336;
+            color: white;
+            box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+        }
+
+        .close-quiz:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(244, 67, 54, 0.5);
+        }
+
+        .quiz-result {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
         }
 
         /* ===========================
@@ -202,37 +752,63 @@
             }
         }
 
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* ===========================
            Responsive Design
         =========================== */
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                max-width: 800px;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
             .header h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
-
-            .header p {
-                font-size: 1rem;
+            
+            .nav-bar {
+                flex-direction: column;
+                text-align: center;
             }
-
-            .cards-container {
-                gap: 25px;
-            }
-
+            
             .card {
-                padding: 40px 30px;
-                min-width: 280px;
+                padding: 30px 20px;
             }
-
+            
             .card-icon {
-                font-size: 4rem;
+                font-size: 3rem;
             }
-
+            
             .card-title {
-                font-size: 1.7rem;
+                font-size: 1.5rem;
             }
 
-            .card-description {
-                font-size: 1rem;
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .progress-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quiz-content {
+                padding: 25px;
             }
         }
 
@@ -240,46 +816,36 @@
             body {
                 padding: 15px;
             }
-
+            
             .header h1 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
+            }
+            
+            .categories-section,
+            .weightage-section {
+                padding: 25px 20px;
+            }
+            
+            .categories-title,
+            .weightage-title {
+                font-size: 1.4rem;
             }
 
-            .header p {
-                font-size: 0.9rem;
+            .topic-card {
+                padding: 20px;
+            }
+            
+            .topic-icon {
+                font-size: 3rem;
+            }
+            
+            .topic-title {
+                font-size: 1.3rem;
             }
 
-            .card {
-                padding: 30px 25px;
+            .quiz-content {
+                padding: 20px;
             }
-
-            .card-icon {
-                font-size: 3.5rem;
-            }
-
-            .card-title {
-                font-size: 1.5rem;
-            }
-        }
-
-        /* ===========================
-           Loading Animation (Optional)
-        =========================== */
-        .card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-
-        .card:hover::after {
-            transform: scaleX(1);
         }
     </style>
 </head>
@@ -287,117 +853,824 @@
     <!-- Header Section -->
     <div class="header">
         <h1>🎓 NTSE Preparation Hub</h1>
-        <p>Choose your test type to begin learning</p>
+        <p>Complete Study Platform with Subject-wise Weightage & Competitive Categories</p>
     </div>
 
-    <!-- Cards Container -->
-    <div class="cards-container">
-        <!-- NTSE SAT Card -->
-        <div class="card" id="satCard" onclick="navigateToPage('https://www.youtube.com/results?search_query=ntse+sat+preparation+class+10')">
-            <div class="card-content">
-                <div class="card-icon">📘</div>
-                <h2 class="card-title">NTSE SAT</h2>
-                <p class="card-description">
-                    Scholastic Aptitude Test - Master Science, Math, and Social Studies with expert video lessons
-                </p>
-                <div class="card-cta">Start Learning →</div>
-            </div>
-        </div>
-
-        <!-- NTSE MAT Card -->
-        <div class="card" id="matCard" onclick="navigateToPage('https://www.youtube.com/results?search_query=ntse+mat+preparation+class+10')">
-            <div class="card-content">
-                <div class="card-icon">🧠</div>
-                <h2 class="card-title">NTSE MAT</h2>
-                <p class="card-description">
-                    Mental Ability Test - Enhance logical reasoning, pattern recognition, and analytical skills
-                </p>
-                <div class="card-cta">Start Learning →</div>
-            </div>
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <a href="homepage.html" class="back-btn">
+            ← Back to Home
+        </a>
+        <div class="nav-links">
+            <a href="#sat">SAT</a>
+            <a href="#mat">MAT</a>
+            <a href="#categories">Categories</a>
+            <a href="#weightage">Weightage</a>
+            <button class="back-btn" onclick="resetProgress()" style="font-size: 0.9rem; padding: 8px 16px;">Reset Progress</button>
         </div>
     </div>
 
-    <!-- JavaScript for Navigation -->
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- NTSE SAT & MAT Section -->
+        <div class="ntse-section">
+            <!-- NTSE SAT Card -->
+            <div class="card" id="satCard" onclick="navigateToPage('https://www.youtube.com/playlist?list=PLVLoWQFkZbhUSTPP_0Ooj87MUy7QZ_588')">
+                <div class="card-content">
+                    <div class="card-icon">📘</div>
+                    <h2 class="card-title">NTSE SAT</h2>
+                    <p class="card-description">
+                        Scholastic Aptitude Test - Master Science, Mathematics, Social Studies with expert video lessons and comprehensive study materials
+                    </p>
+                    <div class="card-cta">Start SAT Learning →</div>
+                </div>
+            </div>
+
+            <!-- NTSE MAT Card -->
+            <div class="card" id="matCard" onclick="navigateToPage('https://www.youtube.com/playlist?list=PLVLoWQFkZbhUSTPP_0Ooj87MUy7QZ_588')">
+                <div class="card-content">
+                    <div class="card-icon">🧠</div>
+                    <h2 class="card-title">NTSE MAT</h2>
+                    <p class="card-description">
+                        Mental Ability Test - Enhance logical reasoning, pattern recognition, analytical skills with practice tests and AI-powered guidance
+                    </p>
+                    <div class="card-cta">Start MAT Learning →</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Competitive Exam Categories -->
+        <div class="categories-section" id="categories">
+            <h2 class="categories-title">🎯 Competitive Exam Categories</h2>
+            <div class="categories-grid">
+                <!-- Aptitude Section -->
+                <div class="category-card" onclick="scrollToAptitude()">
+                    <span class="category-icon">🧮</span>
+                    <h3 class="category-title">Quantitative Aptitude</h3>
+                    <p class="category-description">Mathematics, Numbers, Algebra, Geometry, Data Interpretation</p>
+                </div>
+
+                <!-- Reasoning Section -->
+                <div class="category-card" onclick="navigateToPage('https://www.indiabix.com/logical-reasoning/questions-and-answers/')">
+                    <span class="category-icon">🧩</span>
+                    <h3 class="category-title">Logical Reasoning</h3>
+                    <p class="category-description">Analytical Reasoning, Puzzles, Blood Relations, Coding-Decoding</p>
+                </div>
+
+                <!-- Math Section -->
+                <div class="category-card" onclick="navigateToPage('https://www.khanacademy.org/test-prep/v2-sat-math/x0fcc98a58ba3bea7:advanced-math-harder')">
+                    <span class="category-icon">📐</span>
+                    <h3 class="category-title">Advanced Mathematics</h3>
+                    <p class="category-description">Trigonometry, Calculus, Statistics, Probability, Number Theory</p>
+                </div>
+
+                <!-- GK Section -->
+                <div class="category-card" onclick="navigateToPage('https://www.mentimeter.com/blog/meetings/quiz-questions')">
+                    <span class="category-icon">🌍</span>
+                    <h3 class="category-title">General Knowledge</h3>
+                    <p class="category-description">Current Affairs, History, Geography, Science, Politics</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subject Weightage Section -->
+    <div class="weightage-section" id="weightage">
+        <h2 class="weightage-title">📊 NTSE Subject-wise Weightage</h2>
+        <div class="weightage-grid">
+            <div class="weightage-item">
+                <div class="weightage-subject">Science</div>
+                <div class="weightage-percentage">35%</div>
+                <div class="weightage-description">Physics, Chemistry, Biology</div>
+            </div>
+            <div class="weightage-item">
+                <div class="weightage-subject">Mathematics</div>
+                <div class="weightage-percentage">25%</div>
+                <div class="weightage-description">Algebra, Geometry, Arithmetic</div>
+            </div>
+            <div class="weightage-item">
+                <div class="weightage-subject">Social Studies</div>
+                <div class="weightage-percentage">25%</div>
+                <div class="weightage-description">History, Geography, Civics</div>
+            </div>
+            <div class="weightage-item">
+                <div class="weightage-subject">Mental Ability</div>
+                <div class="weightage-percentage">40%</div>
+                <div class="weightage-description">MAT Section - Overall</div>
+            </div>
+            <div class="weightage-item">
+                <div class="weightage-subject">Language</div>
+                <div class="weightage-percentage">15%</div>
+                <div class="weightage-description">English/Hindi Comprehension</div>
+            </div>
+            <div class="weightage-item">
+                <div class="weightage-subject">Scholastic Test</div>
+                <div class="weightage-percentage">60%</div>
+                <div class="weightage-description">SAT Section - Overall</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quantitative Aptitude Section -->
+    <div class="topics-container" id="aptitude">
+        <!-- Progress Section -->
+        <div class="progress-section">
+            <h2 class="progress-title">📈 Your Learning Progress</h2>
+            <div class="progress-grid">
+                <div class="progress-card">
+                    <span class="progress-icon">📊</span>
+                    <div class="progress-label">Topics Completed</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="topicsProgressBar" style="width: 0%;"></div>
+                    </div>
+                    <div class="progress-percentage" id="topicsProgressText">0/14 Topics</div>
+                </div>
+                <div class="progress-card">
+                    <span class="progress-icon">📝</span>
+                    <div class="progress-label">Quizzes Completed</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="quizzesProgressBar" style="width: 0%;"></div>
+                    </div>
+                    <div class="progress-percentage" id="quizzesProgressText">0/14 Quizzes</div>
+                </div>
+                <div class="progress-card">
+                    <span class="progress-icon">🏆</span>
+                    <div class="progress-label">Average Score</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="accuracyProgressBar" style="width: 0%;"></div>
+                    </div>
+                    <div class="progress-percentage" id="accuracyProgressText">0% Average</div>
+                </div>
+                <div class="progress-card">
+                    <span class="progress-icon">⏱️</span>
+                    <div class="progress-label">Total Study Time</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="timeProgressBar" style="width: 0%;"></div>
+                    </div>
+                    <div class="progress-percentage" id="timeProgressText">0 minutes</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Topics Grid -->
+        <div class="topics-grid" id="topicsGrid">
+            <!-- Topics will be dynamically generated -->
+        </div>
+    </div>
+
+    <!-- Quiz Modal -->
+    <div class="quiz-modal" id="quizModal">
+        <div class="quiz-content">
+            <div class="quiz-header">
+                <h2 id="quizTitle">Quiz Title</h2>
+                <p id="quizSubtitle">Test your knowledge with these questions</p>
+            </div>
+            <div id="quizQuestions"></div>
+            <div class="quiz-actions">
+                <button class="quiz-btn-action submit-quiz" id="submitQuiz">Submit Quiz</button>
+                <button class="quiz-btn-action close-quiz" onclick="closeQuiz()">Close</button>
+            </div>
+            <div id="quizResult" style="display: none;"></div>
+        </div>
+    </div>
+
     <script>
-        /**
-         * Function to navigate to a specific page
-         * @param {string} url - The target page URL
-         */
+        // Topics Data with Quizzes
+        const topicsData = [
+            {
+                id: 'number-system',
+                icon: '🔢',
+                title: 'Number System',
+                difficulty: 'beginner',
+                description: 'Learn about integers, fractions, decimals, and number properties',
+                concepts: 15,
+                questions: 120,
+                duration: '45m',
+                quiz: [
+                    {
+                        question: 'What is the smallest prime number?',
+                        options: ['0', '1', '2', '3'],
+                        correct: 2
+                    },
+                    {
+                        question: 'Which of the following is a rational number?',
+                        options: ['√2', 'π', '0.5', '√5'],
+                        correct: 2
+                    },
+                    {
+                        question: 'What is the sum of first 10 natural numbers?',
+                        options: ['45', '50', '55', '60'],
+                        correct: 2
+                    }
+                ]
+            },
+            {
+                id: 'algebra',
+                icon: '📐',
+                title: 'Algebra',
+                difficulty: 'intermediate',
+                description: 'Master equations, polynomials, and algebraic expressions',
+                concepts: 20,
+                questions: 150,
+                duration: '60m',
+                quiz: [
+                    {
+                        question: 'If x + 5 = 12, what is the value of x?',
+                        options: ['5', '6', '7', '8'],
+                        correct: 2
+                    },
+                    {
+                        question: 'What is the degree of polynomial 3x² + 2x + 1?',
+                        options: ['1', '2', '3', '4'],
+                        correct: 1
+                    },
+                    {
+                        question: 'Simplify: 2(x + 3) - 4',
+                        options: ['2x + 2', '2x + 6', '2x - 4', '2x + 10'],
+                        correct: 0
+                    }
+                ]
+            },
+            {
+                id: 'geometry',
+                icon: '📏',
+                title: 'Geometry',
+                difficulty: 'intermediate',
+                description: 'Understand shapes, angles, and geometric relationships',
+                concepts: 18,
+                questions: 130,
+                duration: '50m',
+                quiz: [
+                    {
+                        question: 'Sum of angles in a triangle is:',
+                        options: ['90°', '180°', '270°', '360°'],
+                        correct: 1
+                    },
+                    {
+                        question: 'Area of a circle with radius r is:',
+                        options: ['πr', 'πr²', '2πr', 'πr³'],
+                        correct: 1
+                    },
+                    {
+                        question: 'Number of sides in a pentagon:',
+                        options: ['4', '5', '6', '7'],
+                        correct: 1
+                    }
+                ]
+            },
+            {
+                id: 'trigonometry',
+                icon: '📊',
+                title: 'Trigonometry',
+                difficulty: 'advanced',
+                description: 'Explore trigonometric functions and identities',
+                concepts: 12,
+                questions: 100,
+                duration: '40m',
+                quiz: [
+                    {
+                        question: 'What is sin(90°)?',
+                        options: ['0', '0.5', '1', '√2'],
+                        correct: 2
+                    },
+                    {
+                        question: 'cos²θ + sin²θ = ?',
+                        options: ['0', '1', '2', 'θ'],
+                        correct: 1
+                    },
+                    {
+                        question: 'What is tan(45°)?',
+                        options: ['0', '0.5', '1', '√3'],
+                        correct: 2
+                    }
+                ]
+            },
+            {
+                id: 'data-interpretation',
+                icon: '📈',
+                title: 'Data Interpretation',
+                difficulty: 'intermediate',
+                description: 'Analyze charts, graphs, and statistical data',
+                concepts: 10,
+                questions: 80,
+                duration: '35m',
+                quiz: [
+                    {
+                        question: 'What is the mean of 2, 4, 6, 8?',
+                        options: ['4', '5', '6', '7'],
+                        correct: 1
+                    },
+                    {
+                        question: 'Median of 1, 3, 5, 7, 9 is:',
+                        options: ['3', '5', '7', '9'],
+                        correct: 1
+                    },
+                    {
+                        question: 'Mode is the value that appears:',
+                        options: ['First', 'Last', 'Most frequently', 'Least frequently'],
+                        correct: 2
+                    }
+                ]
+            },
+            {
+                id: 'mensuration',
+                icon: '📦',
+                title: 'Mensuration',
+                difficulty: 'intermediate',
+                description: 'Calculate areas, volumes, and surface areas',
+                concepts: 16,
+                questions: 110,
+                duration: '40m',
+                quiz: [
+                    {
+                        question: 'Volume of a cube with side a is:',
+                        options: ['a²', 'a³', '6a²', '4a'],
+                        correct: 1
+                    },
+                    {
+                        question: 'Perimeter of rectangle (l×b) is:',
+                        options: ['2(l+b)', 'l×b', '2l+b', 'l+2b'],
+                        correct: 0
+                    },
+                    {
+                        question: 'Total surface area of cylinder:',
+                        options: ['2πrh', '2πr(r+h)', 'πr²h', '2πr²'],
+                        correct: 1
+                    }
+                ]
+            },
+            {
+                id: 'percentages',
+                icon: '💯',
+                title: 'Percentages',
+                difficulty: 'beginner',
+                description: 'Master percentage calculations and applications',
+                concepts: 8,
+                questions: 90,
+                duration: '30m',
+                quiz: [
+                    {
+                        question: '25% of 80 is:',
+                        options: ['15', '20', '25', '30'],
+                        correct: 1
+                    },
+                    {
+                        question: 'If price increases from 50 to 60, percentage increase is:',
+                        options: ['10%', '15%', '20%', '25%'],
+                        correct: 2
+                    },
+                    {
+                        question: '0.5 is equal to:',
+                        options: ['5%', '25%', '50%', '75%'],
+                        correct: 2
+                    }
+                ]
+            },
+            {
+                id: 'ratio-proportion',
+                icon: '⚖️',
+                title: 'Ratio & Proportion',
+                difficulty: 'beginner',
+                description: 'Understand ratios, proportions, and variations',
+                concepts: 10,
+                questions: 85,
+                duration: '35m',
+                quiz: [
+                    {
+                        question: 'Ratio 2:3 can be written as:',
+                        options: ['2/3', '3/2', '2+3', '2-3'],
+                        correct: 0
+                    },
+                    {
+                        question: 'If a:b = 2:3 and b:c = 4:5, then a:c = ?',
+                        options: ['8:15', '2:5', '6:5', '10:12'],
+                        correct: 0
+                    },
+                    {
+                        question: 'Divide 100 in ratio 2:3:5',
+                        options: ['20,30,50', '10,30,60', '25,35,40', '15,25,60'],
+                        correct: 0
+                    }
+                ]
+            },
+            {
+                id: 'time-work',
+                icon: '⏰',
+                title: 'Time & Work',
+                difficulty: 'intermediate',
+                description: 'Solve problems related to time, work, and efficiency',
+                concepts: 12,
+                questions: 95,
+                duration: '40m',
+                quiz: [
+                    {
+                        question: 'If A can do work in 10 days, work done per day:',
+                        options: ['1/5', '1/10', '1/20', '10'],
+                        correct: 1
+                    },
+                    {
+                        question: 'A and B together can complete work in 6 days. If A alone takes 10 days, B alone takes:',
+                        options: ['12 days', '15 days', '18 days', '20 days'],
+                        correct: 1
+                    },
+                    {
+                        question: 'If 5 men can do work in 12 days, 3 men will do it in:',
+                        options: ['15 days', '18 days', '20 days', '24 days'],
+                        correct: 2
+                    }
+                ]
+            },
+            {
+                id: 'profit-loss',
+                icon: '💰',
+                title: 'Profit & Loss',
+                difficulty: 'intermediate',
+                description: 'Calculate profits, losses, and business mathematics',
+                concepts: 14,
+                questions: 105,
+                duration: '35m',
+                quiz: [
+                    {
+                        question: 'CP = 100, SP = 120. Profit% = ?',
+                        options: ['10%', '15%', '20%', '25%'],
+                        correct: 2
+                    },
+                    {
+                        question: 'Loss% formula is:',
+                        options: ['(Loss/CP)×100', '(Loss/SP)×100', '(CP/Loss)×100', '(SP/Loss)×100'],
+                        correct: 0
+                    },
+                    {
+                        question: 'If SP = 90 and loss = 10%, CP = ?',
+                        options: ['80', '90', '100', '110'],
+                        correct: 2
+                    }
+                ]
+            },
+            {
+                id: 'interest',
+                icon: '🏦',
+                title: 'Simple & Compound Interest',
+                difficulty: 'intermediate',
+                description: 'Master interest calculations and financial math',
+                concepts: 11,
+                questions: 88,
+                duration: '30m',
+                quiz: [
+                    {
+                        question: 'Simple Interest formula is:',
+                        options: ['P×R×T', '(P×R×T)/100', 'P(1+R)^T', 'P+R+T'],
+                        correct: 1
+                    },
+                    {
+                        question: 'SI on Rs.1000 at 10% for 2 years:',
+                        options: ['Rs.100', 'Rs.150', 'Rs.200', 'Rs.250'],
+                        correct: 2
+                    },
+                    {
+                        question: 'In compound interest, interest is calculated on:',
+                        options: ['Principal only', 'Interest only', 'Principal + Interest', 'None'],
+                        correct: 2
+                    }
+                ]
+            },
+            {
+                id: 'speed-distance',
+                icon: '🚗',
+                title: 'Speed, Time & Distance',
+                difficulty: 'intermediate',
+                description: 'Solve motion and relative speed problems',
+                concepts: 13,
+                questions: 92,
+                duration: '35m',
+                quiz: [
+                    {
+                        question: 'Speed = ?',
+                        options: ['Distance/Time', 'Time/Distance', 'Distance×Time', 'Distance+Time'],
+                        correct: 0
+                    },
+                    {
+                        question: 'A car travels 60 km in 1 hour. Speed is:',
+                        options: ['30 km/h', '60 km/h', '90 km/h', '120 km/h'],
+                        correct: 1
+                    },
+                    {
+                        question: 'To convert km/h to m/s, multiply by:',
+                        options: ['3/5', '5/18', '18/5', '5/3'],
+                        correct: 1
+                    }
+                ]
+            },
+            {
+                id: 'permutation-combination',
+                icon: '🔀',
+                title: 'Permutation & Combination',
+                difficulty: 'advanced',
+                description: 'Counting principles and arrangement problems',
+                concepts: 9,
+                questions: 75,
+                duration: '45m',
+                quiz: [
+                    {
+                        question: 'Number of ways to arrange 3 objects:',
+                        options: ['3', '6', '9', '12'],
+                        correct: 1
+                    },
+                    {
+                        question: '5! = ?',
+                        options: ['20', '60', '120', '240'],
+                        correct: 2
+                    },
+                    {
+                        question: 'Combination formula nCr = ?',
+                        options: ['n!/r!', 'n!/(n-r)!', 'n!/r!(n-r)!', 'n×r'],
+                        correct: 2
+                    }
+                ]
+            },
+            {
+                id: 'probability',
+                icon: '🎲',
+                title: 'Probability',
+                difficulty: 'advanced',
+                description: 'Understand probability theory and applications',
+                concepts: 8,
+                questions: 70,
+                duration: '40m',
+                quiz: [
+                    {
+                        question: 'Probability of certain event is:',
+                        options: ['0', '0.5', '1', 'Infinity'],
+                        correct: 2
+                    },
+                    {
+                        question: 'Probability of getting heads in coin toss:',
+                        options: ['0', '1/4', '1/2', '1'],
+                        correct: 2
+                    },
+                    {
+                        question: 'Sum of probabilities of all outcomes:',
+                        options: ['0', '0.5', '1', '2'],
+                        correct: 2
+                    }
+                ]
+            }
+        ];
+
+        // Progress tracking
+        let progressData = {
+            completedTopics: [],
+            completedQuizzes: [],
+            quizScores: {},
+            studyTime: 0
+        };
+
+        // Load progress from localStorage
+        function loadProgress() {
+            const saved = localStorage.getItem('ntseProgress');
+            if (saved) {
+                progressData = JSON.parse(saved);
+            }
+            updateProgressDisplay();
+        }
+
+        // Save progress to localStorage
+        function saveProgress() {
+            localStorage.setItem('ntseProgress', JSON.stringify(progressData));
+            updateProgressDisplay();
+        }
+
+        // Update progress display
+        function updateProgressDisplay() {
+            const totalTopics = topicsData.length;
+            const completedTopics = progressData.completedTopics.length;
+            const completedQuizzes = progressData.completedQuizzes.length;
+            
+            // Calculate average score
+            const scores = Object.values(progressData.quizScores);
+            const avgScore = scores.length > 0 ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : 0;
+            
+            // Update topics progress
+            const topicsPercent = Math.round((completedTopics / totalTopics) * 100);
+            document.getElementById('topicsProgressBar').style.width = topicsPercent + '%';
+            document.getElementById('topicsProgressText').textContent = `${completedTopics}/${totalTopics} Topics`;
+            
+            // Update quizzes progress
+            const quizzesPercent = Math.round((completedQuizzes / totalTopics) * 100);
+            document.getElementById('quizzesProgressBar').style.width = quizzesPercent + '%';
+            document.getElementById('quizzesProgressText').textContent = `${completedQuizzes}/${totalTopics} Quizzes`;
+            
+            // Update average score
+            document.getElementById('accuracyProgressBar').style.width = avgScore + '%';
+            document.getElementById('accuracyProgressText').textContent = `${avgScore}% Average`;
+            
+            // Update study time
+            const timePercent = Math.min(Math.round((progressData.studyTime / 600) * 100), 100);
+            document.getElementById('timeProgressBar').style.width = timePercent + '%';
+            document.getElementById('timeProgressText').textContent = `${progressData.studyTime} minutes`;
+        }
+
+        // Reset progress
+        function resetProgress() {
+            if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
+                progressData = {
+                    completedTopics: [],
+                    completedQuizzes: [],
+                    quizScores: {},
+                    studyTime: 0
+                };
+                saveProgress();
+                renderTopics();
+                alert('Progress has been reset!');
+            }
+        }
+
+        // Render topics
+        function renderTopics() {
+            const grid = document.getElementById('topicsGrid');
+            grid.innerHTML = '';
+            
+            topicsData.forEach(topic => {
+                const isCompleted = progressData.completedTopics.includes(topic.id);
+                const card = document.createElement('div');
+                card.className = `topic-card ${isCompleted ? 'completed' : ''}`;
+                card.innerHTML = `
+                    <div class="card-content">
+                        <div class="topic-icon">${topic.icon}</div>
+                        <h3 class="topic-title">${topic.title}</h3>
+                        <div class="difficulty-badge difficulty-${topic.difficulty}">${topic.difficulty.charAt(0).toUpperCase() + topic.difficulty.slice(1)}</div>
+                        <p class="topic-description">${topic.description}</p>
+                        <div class="topic-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">${topic.concepts}</span>
+                                <span>Concepts</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">${topic.questions}</span>
+                                <span>Questions</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">${topic.duration}</span>
+                                <span>Duration</span>
+                            </div>
+                        </div>
+                        <div class="topic-actions">
+                            <button class="start-btn" onclick="startLearning('${topic.id}')">Start Learning →</button>
+                            <button class="quiz-btn" onclick="startQuiz('${topic.id}')">Take Quiz 📝</button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Start learning
+        function startLearning(topicId) {
+            const topic = topicsData.find(t => t.id === topicId);
+            if (!topic) return;
+            
+            // Mark as started
+            if (!progressData.completedTopics.includes(topicId)) {
+                progressData.completedTopics.push(topicId);
+                progressData.studyTime += parseInt(topic.duration);
+                saveProgress();
+                renderTopics();
+            }
+            
+            // Redirect to topic page (create this page in future)
+            window.location.href = `topic_${topicId}.html`;
+        }
+
+        // Start quiz
+        let currentQuiz = null;
+        let userAnswers = [];
+
+        function startQuiz(topicId) {
+            const topic = topicsData.find(t => t.id === topicId);
+            if (!topic) return;
+            
+            currentQuiz = topic;
+            userAnswers = new Array(topic.quiz.length).fill(null);
+            
+            document.getElementById('quizTitle').textContent = `${topic.title} Quiz`;
+            document.getElementById('quizSubtitle').textContent = 'Test your knowledge with these questions';
+            
+            const questionsContainer = document.getElementById('quizQuestions');
+            questionsContainer.innerHTML = '';
+            
+            topic.quiz.forEach((q, qIndex) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'quiz-question';
+                questionDiv.innerHTML = `
+                    <h3>Q${qIndex + 1}. ${q.question}</h3>
+                    <div class="quiz-options">
+                        ${q.options.map((opt, oIndex) => `
+                            <div class="quiz-option" onclick="selectOption(${qIndex}, ${oIndex})">
+                                <input type="radio" name="q${qIndex}" id="q${qIndex}_${oIndex}" style="margin-right: 10px;">
+                                <label for="q${qIndex}_${oIndex}">${opt}</label>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                questionsContainer.appendChild(questionDiv);
+            });
+            
+            document.getElementById('quizResult').style.display = 'none';
+            document.getElementById('submitQuiz').style.display = 'inline-block';
+            document.getElementById('quizModal').classList.add('active');
+        }
+
+        function selectOption(questionIndex, optionIndex) {
+            userAnswers[questionIndex] = optionIndex;
+            
+            // Update UI
+            const options = document.querySelectorAll(`.quiz-question:nth-child(${questionIndex + 1}) .quiz-option`);
+            options.forEach((opt, idx) => {
+                opt.classList.toggle('selected', idx === optionIndex);
+            });
+        }
+
+        document.getElementById('submitQuiz').addEventListener('click', function() {
+            if (userAnswers.includes(null)) {
+                alert('Please answer all questions before submitting!');
+                return;
+            }
+            
+            let correct = 0;
+            currentQuiz.quiz.forEach((q, idx) => {
+                const options = document.querySelectorAll(`.quiz-question:nth-child(${idx + 1}) .quiz-option`);
+                options.forEach((opt, oIdx) => {
+                    opt.classList.remove('selected');
+                    if (oIdx === q.correct) {
+                        opt.classList.add('correct');
+                    } else if (oIdx === userAnswers[idx]) {
+                        opt.classList.add('wrong');
+                    }
+                    opt.style.pointerEvents = 'none';
+                });
+                
+                if (userAnswers[idx] === q.correct) {
+                    correct++;
+                }
+            });
+            
+            const score = Math.round((correct / currentQuiz.quiz.length) * 100);
+            const resultDiv = document.getElementById('quizResult');
+            resultDiv.innerHTML = `
+                <div class="quiz-result">
+                    🎉 Quiz Completed!<br>
+                    Score: ${correct}/${currentQuiz.quiz.length} (${score}%)<br>
+                    ${score >= 70 ? '✅ Great job! You passed!' : '❌ Keep practicing!'}
+                </div>
+            `;
+            resultDiv.style.display = 'block';
+            
+            // Save progress
+            if (!progressData.completedQuizzes.includes(currentQuiz.id)) {
+                progressData.completedQuizzes.push(currentQuiz.id);
+            }
+            progressData.quizScores[currentQuiz.id] = score;
+            saveProgress();
+            renderTopics();
+            
+            this.style.display = 'none';
+        });
+
+        function closeQuiz() {
+            document.getElementById('quizModal').classList.remove('active');
+            currentQuiz = null;
+            userAnswers = [];
+        }
+
+        function scrollToAptitude() {
+            document.getElementById('aptitude').scrollIntoView({ behavior: 'smooth' });
+        }
+
         function navigateToPage(url) {
-            // Add a small delay for visual feedback
             setTimeout(() => {
                 window.location.href = url;
             }, 150);
         }
 
-        /**
-         * Add keyboard accessibility
-         * Users can press Enter or Space to activate cards
-         */
+        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.card');
+            loadProgress();
+            renderTopics();
             
+            // Add keyboard accessibility
+            const cards = document.querySelectorAll('.card, .category-card');
             cards.forEach(card => {
-                // Make cards focusable
                 card.setAttribute('tabindex', '0');
-                
-                // Add keyboard event listeners
                 card.addEventListener('keydown', function(event) {
-                    // Check if Enter or Space key is pressed
                     if (event.key === 'Enter' || event.key === ' ') {
                         event.preventDefault();
                         card.click();
                     }
                 });
-
-                // Add ripple effect on click
-                card.addEventListener('click', function(e) {
-                    const ripple = document.createElement('span');
-                    const rect = card.getBoundingClientRect();
-                    const size = Math.max(rect.width, rect.height);
-                    const x = e.clientX - rect.left - size / 2;
-                    const y = e.clientY - rect.top - size / 2;
-
-                    ripple.style.width = ripple.style.height = size + 'px';
-                    ripple.style.left = x + 'px';
-                    ripple.style.top = y + 'px';
-                    ripple.style.position = 'absolute';
-                    ripple.style.borderRadius = '50%';
-                    ripple.style.background = 'rgba(102, 126, 234, 0.3)';
-                    ripple.style.pointerEvents = 'none';
-                    ripple.style.animation = 'ripple 0.6s ease-out';
-
-                    card.appendChild(ripple);
-
-                    setTimeout(() => {
-                        ripple.remove();
-                    }, 600);
-                });
             });
         });
 
-        // Add ripple animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple {
-                from {
-                    transform: scale(0);
-                    opacity: 1;
-                }
-                to {
-                    transform: scale(2);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-
-        /**
-         * Optional: Add console message for debugging
-         */
-        console.log('NTSE Preparation Hub loaded successfully!');
-        console.log('SAT Card will redirect to: youtube1.html');
-        console.log('MAT Card will redirect to: youtube2.html');
+        console.log('NTSE Preparation Hub with Dynamic Progress Tracking loaded!');
     </script>
 </body>
 </html>

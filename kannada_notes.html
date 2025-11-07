@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>೧೦ನೇ ತರಗತಿ - ಕನ್ನಡ ನೋಟ್‌ಗಳು</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Baloo Tamma 2', cursive;
+            background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: #f3e5f5;
+            font-weight: 700;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #2196f3;
+            font-weight: 600;
+        }
+
+        .table-wrapper {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1.15rem;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        thead th {
+            padding: 18px 15px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            border: 2px solid #5568d3;
+        }
+
+        tbody tr {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        tbody tr:hover {
+            background: linear-gradient(135deg, #f5f7ff 0%, #f9f0ff 100%);
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        tbody td {
+            padding: 18px 15px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            font-weight: 600;
+        }
+
+        .serial-number {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .lesson-name {
+            text-align: left;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(33, 150, 243, 0.3);
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(33, 150, 243, 0.5);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+        }
+
+        .quiz-section {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .quiz-header h2 {
+            color: #6a1b9a;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .quiz-topic {
+            background: #f5f7ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 5px solid #667eea;
+        }
+
+        .quiz-topic h3 {
+            color: #667eea;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .question p {
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-left: 20px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #e0e0e0;
+        }
+
+        .option-label:hover {
+            background: #f0f0f0;
+            border-color: #667eea;
+        }
+
+        .option-label input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .submit-quiz-btn {
+            display: block;
+            margin: 30px auto;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 10px;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-quiz-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .submit-quiz-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-section {
+            display: none;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .result-section.show {
+            display: block;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .result-section h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .result-section p {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .score-display {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        .retry-btn {
+            background: white;
+            color: #667eea;
+            padding: 12px 30px;
+            border-radius: 10px;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .retry-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #2196f3;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .table-wrapper {
+                padding: 15px;
+            }
+
+            table {
+                font-size: 1rem;
+            }
+
+            thead th {
+                padding: 12px 8px;
+                font-size: 1rem;
+            }
+
+            tbody td {
+                padding: 12px 8px;
+            }
+
+            .lesson-name {
+                font-size: 1rem;
+            }
+
+            .download-btn {
+                padding: 10px 15px;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .table-wrapper {
+                padding: 10px;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            thead th {
+                padding: 10px 5px;
+                font-size: 0.9rem;
+            }
+
+            tbody td {
+                padding: 10px 5px;
+            }
+
+            .download-btn {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .table-wrapper {
+            animation: fadeIn 0.8s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="class10.html" class="back-btn">← ಹಿಂದಕ್ಕೆ ಹೋಗಿ</a>
+            <h1>೧೦ನೇ ತರಗತಿ ನೋಟ್‌ಗಳು – ಕನ್ನಡ ಗದ್ಯಪಾಠಗಳ ಪಾಠಪುಸ್ತಕ</h1>
+            <p class="subtitle">ಎಲ್ಲಾ ಗದ್ಯ ಪಾಠಗಳ PDF ನೋಟ್‌ಗಳು</p>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ಕ್ರಮ ಸಂಖ್ಯೆ</th>
+                        <th>ಗದ್ಯ ಪಾಠಗಳ ಹೆಸರು</th>
+                        <th>PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="serial-number">೧</td>
+                        <td class="lesson-name">ಶಬರಿ</td>
+                        <td>
+                            <a href="https://pdflink.to/35e2153f/" class="download-btn" download>
+                                📥 PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number">೨</td>
+                        <td class="lesson-name">ಲಂಡನ್ ನಗರ</td>
+                        <td>
+                            <a href="https://example.com/file2.pdf" class="download-btn" download>
+                                📥 PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number">೩</td>
+                        <td class="lesson-name">ಶಿಕ್ಷೆಯ ಉದ್ದೇಶ</td>
+                        <td>
+                            <a href="https://example.com/file3.pdf" class="download-btn" download>
+                                📥 PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number">೪</td>
+                        <td class="lesson-name">ಭಾಗ್ಯಶೀಲಿಗಳು (ನಾಲ್ವಡಿ ಕೃಷ್ಣರಾಜ ಒಡೆಯರ್. ಸರ್ ಎಸ್ ಎಂ ವಿಶ್ವೇಶ್ವರಯ್ಯ)</td>
+                        <td>
+                            <a href="https://example.com/file4.pdf" class="download-btn" download>
+                                📥 PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number">೫</td>
+                        <td class="lesson-name">ನಿಜವಾದ ದೇಶಪ್ರೇಮ ಯಾರು?</td>
+                        <td>
+                            <a href="https://example.com/file5.pdf" class="download-btn" download>
+                                📥 PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number">೬</td>
+                        <td class="lesson-name">ಎದೆಗೆ ಬೀದ ಆಸ್ತಿ</td>
+                        <td>
+                            <a href="https://example.com/file6.pdf" class="download-btn" download>
+                                📥 PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number">೭</td>
+                        <td class="lesson-name">ಶೈಶವ ಭಾರತೀಯ ಚಿಂತನೆಗಳು</td>
+                        <td>
+                            <a href="https://example.com/file7.pdf" class="download-btn" download>
+                                📥 PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number">೮</td>
+                        <td class="lesson-name">ವೈಜ್ಞಾನಿಕ</td>
+                        <td>
+                            <a href="https://example.com/file8.pdf" class="download-btn" download>
+                                📥 PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Quiz Section -->
+        <div class="quiz-section">
+            <div class="quiz-header">
+                <h2>📝 ಪಾಠಗಳ ಕ್ವಿಜ್</h2>
+                <p class="subtitle">ನಿಮ್ಮ ಜ್ಞಾನವನ್ನು ಪರೀಕ್ಷಿಸಿ</p>
+            </div>
+
+            <form id="quizForm">
+                <!-- Topic 1: ಶಬರಿ -->
+                <div class="quiz-topic">
+                    <h3>೧. ಶಬರಿ</h3>
+                    
+                    <div class="question">
+                        <p>೧.೧ ಶಬರಿಯ ಕಥೆ ಯಾವ ಮಹಾಕಾವ್ಯದಲ್ಲಿದೆ?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q1_1" value="wrong">
+                                <span>ಮಹಾಭಾರತ</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q1_1" value="correct">
+                                <span>ರಾಮಾಯಣ</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q1_1" value="wrong">
+                                <span>ಭಾಗವತ</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>೧.೨ ಶಬರಿ ರಾಮನಿಗೆ ಏನು ಅರ್ಪಿಸಿದಳು?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q1_2" value="wrong">
+                                <span>ಹಣ್ಣುಗಳು</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q1_2" value="correct">
+                                <span>ಬೇರೆಹಣ್ಣುಗಳು (ತಿಂದು ಪರೀಕ್ಷಿಸಿದ)</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q1_2" value="wrong">
+                                <span>ಹೂವುಗಳು</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 2: ಲಂಡನ್ ನಗರ -->
+                <div class="quiz-topic">
+                    <h3>೨. ಲಂಡನ್ ನಗರ</h3>
+                    
+                    <div class="question">
+                        <p>೨.೧ ಲಂಡನ್ ಯಾವ ದೇಶದ ರಾಜಧಾನಿ?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q2_1" value="wrong">
+                                <span>ಫ್ರಾನ್ಸ್</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q2_1" value="correct">
+                                <span>ಇಂಗ್ಲೆಂಡ್</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q2_1" value="wrong">
+                                <span>ಜರ್ಮನಿ</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>೨.೨ ಲಂಡನ್‌ನಲ್ಲಿರುವ ಪ್ರಸಿದ್ಧ ಗಡಿಯಾರ ಗೋಪುರ?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q2_2" value="correct">
+                                <span>ಬಿಗ್ ಬೆನ್</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q2_2" value="wrong">
+                                <span>ಐಫೆಲ್ ಟವರ್</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q2_2" value="wrong">
+                                <span>ಕುತುಬ್ ಮಿನಾರ್</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 3: ಶಿಕ್ಷೆಯ ಉದ್ದೇಶ -->
+                <div class="quiz-topic">
+                    <h3>೩. ಶಿಕ್ಷೆಯ ಉದ್ದೇಶ</h3>
+                    
+                    <div class="question">
+                        <p>೩.೧ ಶಿಕ್ಷೆಯ ಮುಖ್ಯ ಉದ್ದೇಶ ಏನು?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q3_1" value="wrong">
+                                <span>ಸೇಡು ತೀರಿಸುವುದು</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q3_1" value="correct">
+                                <span>ಸುಧಾರಣೆ ಮತ್ತು ಪುನರ್ವಸತಿ</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q3_1" value="wrong">
+                                <span>ಶಿಕ್ಷಿಸುವುದು ಮಾತ್ರ</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>೩.೨ ಶಿಕ್ಷೆಯು ಯಾವುದನ್ನು ಉತ್ತೇಜಿಸಬೇಕು?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q3_2" value="wrong">
+                                <span>ಭಯ</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q3_2" value="correct">
+                                <span>ಸಾಮಾಜಿಕ ಸುಧಾರಣೆ</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q3_2" value="wrong">
+                                <span>ಪ್ರತೀಕಾರ</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 4: ಭಾಗ್ಯಶೀಲಿಗಳು -->
+                <div class="quiz-topic">
+                    <h3>೪. ಭಾಗ್ಯಶೀಲಿಗಳು</h3>
+                    
+                    <div class="question">
+                        <p>೪.೧ ಈ ಪಾಠದ ಲೇಖಕರು ಯಾರು?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q4_1" value="correct">
+                                <span>ಕೃಷ್ಣರಾಜ ಒಡೆಯರ್</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q4_1" value="wrong">
+                                <span>ಕುವೆಂಪು</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q4_1" value="wrong">
+                                <span>ಬೆಂದ್ರೆ</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>೪.೨ ಭಾಗ್ಯಶೀಲಿಗಳು ಯಾರು?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q4_2" value="wrong">
+                                <span>ಶ್ರೀಮಂತರು</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q4_2" value="correct">
+                                <span>ಪರಿಶ್ರಮಿಗಳು ಮತ್ತು ಸಕಾರಾತ್ಮಕ ಚಿಂತನೆಯವರು</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q4_2" value="wrong">
+                                <span>ಅದೃಷ್ಟವಂತರು</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 5: ನಿಜವಾದ ದೇಶಪ್ರೇಮ ಯಾರು? -->
+                <div class="quiz-topic">
+                    <h3>೫. ನಿಜವಾದ ದೇಶಪ್ರೇಮ ಯಾರು?</h3>
+                    
+                    <div class="question">
+                        <p>೫.೧ ನಿಜವಾದ ದೇಶಪ್ರೇಮಿ ಯಾರು?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q5_1" value="wrong">
+                                <span>ದೇಶದ ಬಗ್ಗೆ ಮಾತನಾಡುವವರು</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q5_1" value="correct">
+                                <span>ದೇಶಕ್ಕಾಗಿ ಕೆಲಸ ಮಾಡುವವರು</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q5_1" value="wrong">
+                                <span>ಧ್ವಜ ಹಾರಿಸುವವರು ಮಾತ್ರ</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>೫.೨ ದೇಶಪ್ರೇಮದ ಪ್ರಮುಖ ಲಕ್ಷಣ ಏನು?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q5_2" value="wrong">
+                                <span>ಕೇವಲ ಭಾವನಾತ್ಮಕತೆ</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q5_2" value="correct">
+                                <span>ಸೇವೆ ಮತ್ತು ತ್ಯಾಗ</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q5_2" value="wrong">
+                                <span>ವಾಗ್ದಾಳಿ</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 6: ಎದೆಗೆ ಬೀದ ಆಸ್ತಿ -->
+                <div class="quiz-topic">
+                    <h3>೬. ಎದೆಗೆ ಬೀದ ಆಸ್ತಿ</h3>
+                    
+                    <div class="question">
+                        <p>೬.೧ ನಿಜವಾದ ಆಸ್ತಿ ಯಾವುದು?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q6_1" value="wrong">
+                                <span>ಹಣ ಮತ್ತು ಸೊತ್ತು</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q6_1" value="correct">
+                                <span>ಜ್ಞಾನ ಮತ್ತು ಶಿಕ್ಷಣ</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q6_1" value="wrong">
+                                <span>ಚಿನ್ನ</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>೬.೨ ಶಿಕ್ಷಣದ ಮುಖ್ಯತೆ ಏನು?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q6_2" value="wrong">
+                                <span>ಪದವಿ ಪಡೆಯುವುದು</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q6_2" value="correct">
+                                <span>ಜೀವನವನ್ನು ಶ್ರೀಮಂತಗೊಳಿಸುವುದು</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q6_2" value="wrong">
+                                <span>ಉದ್ಯೋಗ ಪಡೆಯುವುದು ಮಾತ್ರ</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 7: ಶೈಶವ ಭಾರತೀಯ ಚಿಂತನೆಗಳು -->
+                <div class="quiz-topic">
+                    <h3>೭. ಶೈಶವ ಭಾರತೀಯ ಚಿಂತನೆಗಳು</h3>
+                    
+                    <div class="question">
+                        <p>೭.೧ ಭಾರತೀಯ ಚಿಂತನೆಯ ಮೂಲ ಏನು?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q7_1" value="correct">
+                                <span>ವೇದಗಳು ಮತ್ತು ಉಪನಿಷತ್ತುಗಳು</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q7_1" value="wrong">
+                                <span>ವಿದೇಶಿ ಗ್ರಂಥಗಳು</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q7_1" value="wrong">
+                                <span>ಆಧುನಿಕ ವಿಜ್ಞಾನ</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>೭.೨ ಭಾರತೀಯ ತತ್ವಶಾಸ್ತ್ರದ ಗುರಿ ಏನು?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q7_2" value="wrong">
+                                <span>ಭೌತಿಕ ಸಂಪತ್ತು</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q7_2" value="correct">
+                                <span>ಮೋಕ್ಷ ಮತ್ತು ಆತ್ಮಜ್ಞಾನ</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q7_2" value="wrong">
+                                <span>ಅಧಿಕಾರ</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 8: ವೈಜ್ಞಾನಿಕ -->
+                <div class="quiz-topic">
+                    <h3>೮. ವೈಜ್ಞಾನಿಕ</h3>
+                    
+                    <div class="question">
+                        <p>೮.೧ ವಿಜ್ಞಾನಿಯ ಮುಖ್ಯ ಗುಣ ಯಾವುದು?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q8_1" value="wrong">
+                                <span>ಅಂಧನಂಬಿಕೆ</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q8_1" value="correct">
+                                <span>ಪ್ರಶ್ನಿಸುವ ಮನೋಭಾವ ಮತ್ತು ಪರಿಶೋಧನೆ</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q8_1" value="wrong">
+                                <span>ಕೇವಲ ಜ್ಞಾಪಕ ಶಕ್ತಿ</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <p>೮.೨ ವೈಜ್ಞಾನಿಕ ದೃಷ್ಟಿಕೋನ ಏನು?</p>
+                        <div class="options">
+                            <label class="option-label">
+                                <input type="radio" name="q8_2" value="wrong">
+                                <span>ಭಾವನಾತ್ಮಕ ನಿರ್ಧಾರಗಳು</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q8_2" value="correct">
+                                <span>ತರ್ಕಬದ್ಧ ಮತ್ತು ಪ್ರಾಯೋಗಿಕ ವಿಧಾನ</span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" name="q8_2" value="wrong">
+                                <span>ಅನುಮಾನ</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="submit-quiz-btn" onclick="submitQuiz()">ಕ್ವಿಜ್ ಸಲ್ಲಿಸಿ</button>
+            </form>
+
+            <!-- Result Section -->
+            <div id="resultSection" class="result-section">
+                <h3>🎉 ನಿಮ್ಮ ಫಲಿತಾಂಶ</h3>
+                <div class="score-display" id="scoreDisplay"></div>
+                <p id="resultMessage"></p>
+                <p id="scorePercentage"></p>
+                <button class="retry-btn" onclick="retryQuiz()">ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>💡 ಸಲಹೆ: ಆಫ್‌ಲೈನ್ ಪ್ರವೇಶಕ್ಕಾಗಿ PDF ಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</p>
+            <p>&copy; 2025 SmartLearn Planner - ನಿಮ್ಮ ಕಲಿಕೆಯ ಸಾಥಿ</p>
+        </div>
+    </div>
+
+    <script>
+        // Add click tracking for downloads
+        document.querySelectorAll('.download-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                console.log('Downloading:', this.href);
+                // You can add analytics tracking here
+            });
+        });
+
+        // Quiz functionality
+        function submitQuiz() {
+            const form = document.getElementById('quizForm');
+            const resultSection = document.getElementById('resultSection');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const resultMessage = document.getElementById('resultMessage');
+            const scorePercentage = document.getElementById('scorePercentage');
+
+            // Total questions
+            const totalQuestions = 16;
+            let correctAnswers = 0;
+
+            // Check all answers
+            const questions = [
+                'q1_1', 'q1_2', 'q2_1', 'q2_2', 'q3_1', 'q3_2', 
+                'q4_1', 'q4_2', 'q5_1', 'q5_2', 'q6_1', 'q6_2', 
+                'q7_1', 'q7_2', 'q8_1', 'q8_2'
+            ];
+
+            let allAnswered = true;
+            questions.forEach(question => {
+                const selected = document.querySelector(`input[name="${question}"]:checked`);
+                if (!selected) {
+                    allAnswered = false;
+                } else if (selected.value === 'correct') {
+                    correctAnswers++;
+                }
+            });
+
+            if (!allAnswered) {
+                alert('ದಯವಿಟ್ಟು ಎಲ್ಲಾ ಪ್ರಶ್ನೆಗಳಿಗೆ ಉತ್ತರಿಸಿ!');
+                return;
+            }
+
+            // Calculate percentage
+            const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+
+            // Display results
+            scoreDisplay.textContent = `${correctAnswers} / ${totalQuestions}`;
+            scorePercentage.textContent = `ಶೇಕಡಾವಾರು: ${percentage}%`;
+
+            // Result message based on score
+            let message = '';
+            if (percentage >= 90) {
+                message = '🌟 ಅತ್ಯುತ್ತಮ! ನೀವು ಅದ್ಭುತವಾಗಿ ಮಾಡಿದ್ದೀರಿ!';
+            } else if (percentage >= 70) {
+                message = '👍 ಚೆನ್ನಾಗಿದೆ! ನೀವು ಒಳ್ಳೆಯ ಕೆಲಸ ಮಾಡಿದ್ದೀರಿ!';
+            } else if (percentage >= 50) {
+                message = '👌 ಸಮಾಧಾನಕರ! ಇನ್ನಷ್ಟು ಸುಧಾರಿಸಬಹುದು!';
+            } else {
+                message = '💪 ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ! ನೀವು ಮಾಡಬಹುದು!';
+            }
+
+            resultMessage.textContent = message;
+            resultSection.classList.add('show');
+
+            // Scroll to results
+            resultSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function retryQuiz() {
+            // Reset form
+            document.getElementById('quizForm').reset();
+            
+            // Hide results
+            document.getElementById('resultSection').classList.remove('show');
+            
+            // Scroll to top of quiz
+            document.querySelector('.quiz-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Page load animation
+        console.log('Kannada Notes page loaded successfully');
+    </script>
+</body>
+</html>
